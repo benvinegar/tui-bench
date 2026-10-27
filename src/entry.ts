@@ -30,6 +30,8 @@ export interface EntryMeta {
     failedBuilds?: number;
     runs?: number;
   };
+  /** For imported entries produced by an external agent harness, whatever stats it reported. */
+  external?: { harness: string; totalTokens?: number; toolCalls?: number; summary?: string };
   build?: { ok: boolean; typecheckOk?: boolean; durationMs: number };
   source_stats?: { files: number; lines: number };
 }
