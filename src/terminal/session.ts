@@ -93,7 +93,8 @@ export class TerminalSession {
   async waitForStartup(timeoutMs = 15000): Promise<boolean> {
     const deadline = Date.now() + timeoutMs;
     while (!this.sawOutput && !this.exit && Date.now() < deadline) await sleep(20);
-    await this.waitIdle();
+    // Short cap: animated apps never go quiet, and the scenario's own steps decide what happens next.
+    await this.waitIdle(250, 1000);
     return this.sawOutput;
   }
 

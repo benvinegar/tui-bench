@@ -17,6 +17,7 @@ export const Step = z.union([
       snapshot: z.string(),
       note: z.string().optional(),
       quiet: z.number().int().optional(),
+      /** Give up waiting for the screen to settle after this many ms (default 1500; animations never settle). */
       maxWait: z.number().int().optional(),
     })
     .strict(),
@@ -62,7 +63,7 @@ export async function runScenario(
       else if ("click" in step) await s.click(step.click.x, step.click.y, step.click.button);
       else if ("resize" in step) s.resize(step.resize.cols, step.resize.rows);
       else if ("snapshot" in step) {
-        await s.waitIdle(step.quiet ?? 250, step.maxWait ?? 3000);
+        await s.waitIdle(step.quiet ?? 250, step.maxWait ?? 1500);
         snapshots.push(s.snapshot(step.snapshot));
         if (step.note) notes[step.snapshot] = step.note;
       } else if ("expectExit" in step) {
