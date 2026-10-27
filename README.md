@@ -50,6 +50,7 @@ export ANTHROPIC_API_KEY=...          # and/or OPENAI_API_KEY, OPENROUTER_API_KE
 | `tuibench preview <dir> -t task -s stack --steps '[{press: "j j"}]'` | Build an app and print text screenshots after scripted input; this is how CLI agents (the `command` provider) self-test |
 | `tuibench serve [--host 0.0.0.0]` | Build and serve the report; votes are saved to `judgments/judgments.jsonl` |
 | `tuibench report [--standalone]` | Build the report; `--standalone` makes one self-contained HTML file to share (votes then live in the browser and can be exported/imported) |
+| `tuibench judgments import <file>` | Merge votes exported from a standalone report (Leaderboard → Export judgments) |
 | `tuibench leaderboard [--by model\|stack\|model_stack]` | Ratings from the judgments |
 | `tuibench doctor` | Toolchain check |
 

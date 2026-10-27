@@ -7,7 +7,7 @@ import { capture, findEntries } from "./capture.ts";
 import { Entry } from "./entry.ts";
 import { generate, importEntry, prepareWorkspace } from "./generate.ts";
 import { bradleyTerry } from "./judge/ratings.ts";
-import { judgmentsFile, readJudgments } from "./judge/store.ts";
+import { appendOp, isJudgment, judgmentsFile, readJudgments } from "./judge/store.ts";
 import { loadModels, modelsFile } from "./models.ts";
 import { ROOT, resultsDir } from "./paths.ts";
 import { buildReport } from "./report/build.ts";
@@ -169,6 +169,33 @@ program
     bradleyTerry(js, keyOf).forEach((r, i) =>
       log(`${String(i + 1).padStart(3)}  ${r.key.padEnd(36)} ${Math.round(r.rating).toString().padStart(7)} ${String(r.games).padStart(6)}   ${r.wins}-${r.ties}-${r.losses} (${r.bothBad})`),
     );
+  });
+
+program
+  .command("judgments")
+  .description("Manage human judgments")
+  .command("import <file>")
+  .description("Merge judgments exported from a report (JSON array, or a judgments.jsonl) into judgments/judgments.jsonl")
+  .action((file) => {
+    const text = fs.readFileSync(file, "utf8").trim();
+    const items: unknown[] = text.startsWith("[")
+      ? JSON.parse(text)
+      : text.split("\n").filter(Boolean).map((l) => {
+          const o = JSON.parse(l);
+          return o.op === "add" ? o.judgment : o;
+        });
+    const known = new Set(readJudgments().map((j) => j.id));
+    let added = 0;
+    let invalid = 0;
+    for (const j of items) {
+      if (!isJudgment(j)) invalid++;
+      else if (!known.has(j.id)) {
+        appendOp({ op: "add", judgment: j });
+        known.add(j.id);
+        added++;
+      }
+    }
+    log(`Added ${added} judgment(s); ${items.length - added - invalid} already present${invalid ? `, ${invalid} invalid skipped` : ""}.`);
   });
 
 program
