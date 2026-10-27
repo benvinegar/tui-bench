@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { CACHE_DIR, STACKS_DIR } from "./paths.ts";
-import { exec, Mutex, truncateMiddle } from "./util.ts";
+import { STACKS_DIR } from "./paths.ts";
+import { exec, truncateMiddle } from "./util.ts";
 
 export interface BuildResult {
   ok: boolean;
@@ -27,10 +27,6 @@ export interface Stack {
 }
 
 const BUILD_TIMEOUT = 10 * 60_000;
-const CARGO_TARGET = path.join(CACHE_DIR, "cargo-target");
-// All ratatui workspaces share one cargo target dir so dependencies compile once.
-// The app binary has the same name everywhere, so build + copy-out must be serialized.
-const cargoLock = new Mutex();
 
 const ratatui: Stack = {
   id: "ratatui",
@@ -45,28 +41,22 @@ const ratatui: Stack = {
 - It is built with \`cargo build --release\` and the binary is run with the workspace root as its working directory.
 - The \`build\` tool (when you have one) runs the same build and returns compiler output.`,
   async build(ws) {
-    return cargoLock.run(async () => {
-      const r = await exec("cargo", ["build", "--release", "--color", "never"], {
-        cwd: ws,
-        env: { CARGO_TARGET_DIR: CARGO_TARGET, CARGO_TERM_COLOR: "never" },
-        timeoutMs: BUILD_TIMEOUT,
-      });
-      const ok = r.code === 0;
-      if (ok) {
-        const bin = path.join(ws, ".tuibench", "bin");
-        fs.mkdirSync(bin, { recursive: true });
-        fs.copyFileSync(path.join(CARGO_TARGET, "release", "app"), path.join(bin, "app"));
-        fs.chmodSync(path.join(bin, "app"), 0o755);
-      }
-      const output = r.timedOut ? r.output + "\n[build timed out]" : r.output;
-      return { ok, output: truncateMiddle(output), durationMs: r.durationMs };
+    // Each workspace keeps its own target dir. A shared one would need a cross-process lock: concurrent
+    // builds from different processes (e.g. several agents running `tuibench preview`) would overwrite
+    // each other's identically named binary.
+    const r = await exec("cargo", ["build", "--release", "--color", "never"], {
+      cwd: ws,
+      env: { CARGO_TARGET_DIR: path.join(ws, "target"), CARGO_TERM_COLOR: "never" },
+      timeoutMs: BUILD_TIMEOUT,
     });
+    const output = r.timedOut ? r.output + "\n[build timed out]" : r.output;
+    return { ok: r.code === 0, output: truncateMiddle(output), durationMs: r.durationMs };
   },
   check(ws) {
     return this.build(ws);
   },
   runCommand(ws) {
-    return { command: path.join(ws, ".tuibench", "bin", "app"), args: [] };
+    return { command: path.join(ws, "target", "release", "app"), args: [] };
   },
 };
 

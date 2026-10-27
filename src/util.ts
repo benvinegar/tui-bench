@@ -81,22 +81,6 @@ export function confine(root: string, rel: string): string {
   return abs;
 }
 
-/** A tiny promise mutex, used to serialize builds that share a cargo target dir. */
-export class Mutex {
-  private tail: Promise<void> = Promise.resolve();
-  async run<T>(fn: () => Promise<T>): Promise<T> {
-    const prev = this.tail;
-    let release!: () => void;
-    this.tail = new Promise((r) => (release = r));
-    await prev;
-    try {
-      return await fn();
-    } finally {
-      release();
-    }
-  }
-}
-
 /** Run `fn` over `items` with at most `limit` in flight. */
 export async function pool<T>(items: T[], limit: number, fn: (item: T) => Promise<void>): Promise<void> {
   const queue = [...items];
