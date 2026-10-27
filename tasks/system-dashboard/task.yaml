@@ -34,7 +34,7 @@ prompt: |
   | Key | Action |
   |---|---|
   | `j` / `↓`, `k` / `↑` | Move the selection in the process table |
-  | `s` | Cycle the sort column: CPU% → MEM% → PID → NAME → CPU%. Numbers sort descending, PID and NAME ascending. |
+  | `s` | Cycle the sort column: CPU% → MEM% → PID → NAME → CPU%. Numbers sort descending, PID and NAME ascending. The same process stays selected after re-sorting (as in htop), and the table scrolls to keep it visible. |
   | `enter` | Open a detail popup for the selected process showing all its fields; `esc` closes it |
   | `p` | Pause / resume playback |
   | `q` | Quit |
@@ -46,10 +46,10 @@ scenario:
     note: Playback has finished (60/60); every panel is filled in and the replay-finished indication is visible.
   - press: s
   - snapshot: sort-mem
-    note: The process table is sorted by MEM% descending and the header shows it.
+    note: The process table is sorted by MEM% descending and the header shows it; chrome (the top CPU process) is still selected, now 2nd.
   - press: j j j enter
   - snapshot: process-detail
-    note: A popup shows every field of the 4th process in MEM% order.
+    note: A popup shows every field of dockerd (three rows below chrome in MEM% order).
   - press: esc
   - resize: { cols: 90, rows: 28 }
   - snapshot: resized
