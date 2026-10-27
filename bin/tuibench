@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Run the CLI from anywhere: resolves the repo through symlinks and uses its local tsx.
+set -euo pipefail
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
+ROOT="$(cd "$(dirname "$SOURCE")/.." && pwd)"
+exec "$ROOT/node_modules/.bin/tsx" "$ROOT/src/cli.ts" "$@"

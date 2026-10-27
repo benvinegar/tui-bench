@@ -1,0 +1,52 @@
+# Copy to models.yaml and keep the models you want to benchmark.
+# The key is the model's id in results/ and reports. API keys come from environment variables.
+models:
+  # --- Anthropic (ANTHROPIC_API_KEY) ---
+  opus-5.5:
+    name: Claude Opus 5.5
+    provider: anthropic
+    model: claude-opus-5-5
+    effort: high          # low | medium | high | xhigh | max (Opus 5.5 defaults to medium)
+  sonnet-5.5:
+    name: Claude Sonnet 5.5
+    provider: anthropic
+    model: claude-sonnet-5-5
+    effort: high
+  haiku-5.5:
+    name: Claude Haiku 5.5
+    provider: anthropic
+    model: claude-haiku-5-5
+
+  # --- Any OpenAI-compatible Chat Completions endpoint ---
+  # gpt:
+  #   name: GPT (OpenAI)
+  #   provider: openai
+  #   model: <model id>
+  #   apiKeyEnv: OPENAI_API_KEY
+  #   extra: { reasoning_effort: high }
+  # openrouter-qwen:
+  #   name: Qwen3 Coder (OpenRouter)
+  #   provider: openai
+  #   baseURL: https://openrouter.ai/api/v1
+  #   apiKeyEnv: OPENROUTER_API_KEY
+  #   model: qwen/qwen3-coder
+  # local:
+  #   name: Local model (Ollama)
+  #   provider: openai
+  #   baseURL: http://localhost:11434/v1
+  #   model: qwen2.5-coder:32b
+
+  # --- External coding agents, run as a command inside the workspace ---
+  # The full prompt is in $TUIBENCH_PROMPT_FILE (and $TUIBENCH_PROMPT).
+  # claude-code:
+  #   name: Claude Code
+  #   provider: command
+  #   command: claude -p --permission-mode bypassPermissions "$(cat "$TUIBENCH_PROMPT_FILE")"
+  # codex:
+  #   name: Codex CLI
+  #   provider: command
+  #   command: codex exec --full-auto "$(cat "$TUIBENCH_PROMPT_FILE")"
+
+# Optional per-model limits (defaults: 60 turns, 45 minutes):
+#   maxTurns: 60
+#   timeoutMinutes: 45

@@ -1,0 +1,38 @@
+{
+  "title": "Website relaunch",
+  "columns": [
+    {
+      "id": "backlog",
+      "title": "Backlog",
+      "cards": [
+        { "id": "WEB-12", "title": "Audit image sizes", "description": "Find images over 300 KB on the marketing pages and list replacements.", "tags": ["perf"], "assignee": "Sam", "points": 2 },
+        { "id": "WEB-15", "title": "Cookie banner copy", "description": "Legal asked for a shorter, clearer cookie banner text in all three languages.", "tags": ["content", "legal"], "assignee": null, "points": 1 },
+        { "id": "WEB-18", "title": "Dark mode for docs", "description": "Add a theme toggle to the docs site and respect prefers-color-scheme.", "tags": ["design"], "assignee": "Noor", "points": 5 }
+      ]
+    },
+    {
+      "id": "in-progress",
+      "title": "In Progress",
+      "cards": [
+        { "id": "WEB-7", "title": "New pricing page", "description": "Implement the three-tier pricing layout from the Figma file, including the FAQ accordion.", "tags": ["design", "frontend"], "assignee": "Ada", "points": 8 },
+        { "id": "WEB-9", "title": "Migrate blog to MDX", "description": "Convert the 140 legacy posts and keep every old URL working with redirects.", "tags": ["content", "frontend"], "assignee": "Lin", "points": 5 }
+      ]
+    },
+    {
+      "id": "review",
+      "title": "Review",
+      "cards": [
+        { "id": "WEB-4", "title": "Navigation redesign", "description": "Sticky header with mega-menu; needs accessibility review before merge.", "tags": ["design", "a11y"], "assignee": "Noor", "points": 5 }
+      ]
+    },
+    {
+      "id": "done",
+      "title": "Done",
+      "cards": [
+        { "id": "WEB-1", "title": "Set up analytics", "description": "Privacy-friendly analytics with no cookies.", "tags": ["infra"], "assignee": "Sam", "points": 3 },
+        { "id": "WEB-2", "title": "Choose typeface", "description": "Picked Inter for UI and Source Serif for long-form content.", "tags": ["design"], "assignee": "Ada", "points": 1 },
+        { "id": "WEB-3", "title": "Domain & TLS", "description": "Moved DNS and issued certificates for all subdomains.", "tags": ["infra"], "assignee": "Lin", "points": 2 }
+      ]
+    }
+  ]
+}

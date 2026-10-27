@@ -1,0 +1,55 @@
+id: file-browser
+title: File browser
+summary: A two-pane file explorer with an expandable tree and a scrollable file preview.
+size: { cols: 110, rows: 32 }
+tags: [tree, split-pane, scrolling, focus]
+prompt: |
+  Build a two-pane file browser for the directory `data/project`.
+
+  ## Layout
+  - **Left pane: a tree** of `data/project`. The root's children are shown when the app starts and the first entry is
+    selected. Within every directory, list subdirectories first, then files, each group sorted alphabetically
+    (case-insensitive). Indent children under their parent and show which directories are expanded or collapsed.
+    Distinguish directories from files visually (for example with icons or colors).
+  - **Right pane: a preview** of the selected entry. For a file, show its contents with line numbers. For a directory,
+    show a short summary (for example the number of subdirectories and files it contains).
+  - **A status bar** showing the selected entry's path relative to `data/project`, its size in bytes (files) and its
+    line count (files).
+  - The pane that has keyboard focus must be clearly indicated.
+  - Basic syntax highlighting for Rust, Markdown and TOML files is a welcome bonus, not a requirement.
+
+  ## Keys
+  | Key | Action |
+  |---|---|
+  | `j` / `↓`, `k` / `↑` | Tree focused: move the selection. Preview focused: scroll the preview by one line. |
+  | `l` / `→` / `enter` | Tree focused: expand the selected directory (no effect on files) |
+  | `h` / `←` | Tree focused: collapse the selected directory if it is expanded, otherwise move the selection to its parent directory |
+  | `tab` | Switch focus between the tree and the preview |
+  | `pageup` / `pagedown` | Preview focused: scroll the preview by a page |
+  | `q` | Quit |
+
+  When a different file is selected, its preview starts at the top. The layout must adapt to the terminal size and
+  redraw correctly when the terminal is resized.
+scenario:
+  - snapshot: initial
+    note: The root's children are listed (assets, docs, src, Cargo.toml, README.md) with the first selected.
+  - press: j j l
+  - snapshot: expanded
+    note: "src/ is expanded, showing ui/, config.rs and main.rs; src/ is selected and the preview summarises it."
+  - press: j j j
+  - snapshot: file-preview
+    note: src/main.rs is selected and its contents are previewed with line numbers.
+  - press: tab j j j j j j j j
+  - snapshot: preview-scrolled
+    note: The preview has focus (clearly indicated) and is scrolled down 8 lines.
+  - press: tab h h
+  - snapshot: collapsed
+    note: Focus is back on the tree; src/ is selected and collapsed again.
+  - press: k l j
+  - snapshot: markdown
+    note: docs/ is expanded and docs/architecture.md is previewed.
+  - resize: { cols: 80, rows: 24 }
+  - snapshot: resized
+    note: After resizing to 80x24 both panes still fit and stay readable.
+  - press: q
+  - expectExit: 3000

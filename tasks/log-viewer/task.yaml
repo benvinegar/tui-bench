@@ -1,0 +1,64 @@
+id: log-viewer
+title: Log viewer
+summary: A scrollable, colorized log viewer with search, match navigation and level filtering.
+size: { cols: 110, rows: 30 }
+tags: [scrolling, search, highlight, filter]
+prompt: |
+  Build a log file viewer for `data/app.log`.
+
+  ## Data
+  Each line has the form `<ISO timestamp> <LEVEL> [<module>] <message>`, for example
+  `2026-03-14T09:00:02.288Z INFO  [db] GET /api/users 200 333ms`. Levels are DEBUG, INFO, WARN and ERROR
+  (the level is padded to 5 characters). There are 420 lines.
+
+  ## Screen
+  - A header showing the file name and the number of lines per level.
+  - The log view, one log line per row, starting at the top of the file with the first line selected. Show the
+    timestamp de-emphasized, the level with a distinct color per level, the module, and the message. Lines longer
+    than the view are truncated (no wrapping). The selected line is highlighted.
+  - A status bar showing the selected line number and the total number of visible lines, the active level filter,
+    and when a search is active, the search term and the current match index out of the number of matches (e.g.
+    `timeout 3/21`).
+
+  ## Keys
+  | Key | Action |
+  |---|---|
+  | `j` / `↓`, `k` / `↑` | Move the selection by one line, scrolling as needed |
+  | `ctrl+d` / `ctrl+u`, `pagedown` / `pageup` | Move by half a page / a page |
+  | `g` / `G` | Jump to the first / last line |
+  | `/` | Open a search prompt at the bottom. Typed text appears in it, `backspace` deletes. `enter` runs a case-insensitive substring search: every match is highlighted in the visible lines, and the selection jumps to the first matching line at or after the selection. `esc` closes the prompt without searching. |
+  | `n` / `N` | Jump to the next / previous matching line (wrapping around) |
+  | `esc` | When a search is active (and the prompt is closed), clear it |
+  | `l` | Cycle the minimum level shown: all → INFO and above → WARN and above → ERROR only → all. Keep the selection on the same log line if it is still visible, otherwise on the nearest visible one. |
+  | `q` | Quit (not while the search prompt is open) |
+
+  The layout must adapt to the terminal size and redraw correctly when the terminal is resized.
+scenario:
+  - snapshot: initial
+    note: The top of the file, first line selected, levels colored, header with per-level counts.
+  - press: G
+  - snapshot: bottom
+    note: Jumped to the last line (420); the view is scrolled to the end.
+  - press: g
+  - press: /
+  - type: timeout
+  - snapshot: search-prompt
+    note: The search prompt is open with "timeout" typed in.
+  - press: enter
+  - snapshot: search-results
+    note: Matches of "timeout" are highlighted; the selection is on the first matching line; the status bar shows 1/N.
+  - press: n n n
+  - snapshot: next-match
+    note: Three matches further on (4/N).
+  - press: esc
+  - press: l l
+  - snapshot: warn-filter
+    note: Search cleared. Only WARN and ERROR lines are shown and the active filter is indicated.
+  - press: ctrl+d
+  - snapshot: half-page
+    note: Moved down half a page within the filtered lines.
+  - resize: { cols: 80, rows: 22 }
+  - snapshot: resized
+    note: After resizing to 80x22 lines are truncated cleanly and the status bar still fits.
+  - press: q
+  - expectExit: 3000

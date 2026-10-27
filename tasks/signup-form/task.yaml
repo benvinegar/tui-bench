@@ -1,0 +1,61 @@
+id: signup-form
+title: Sign-up form
+summary: A focusable form with text inputs, a masked password, a plan selector, a checkbox, validation and a confirmation screen.
+size: { cols: 90, rows: 30 }
+tags: [form, input, focus, validation]
+prompt: |
+  Build a sign-up form for a fictional product called **Nimbus**.
+
+  ## Fields (in this order)
+  1. **Full name**: text input
+  2. **Email**: text input
+  3. **Password**: text input that shows a mask character (such as `•`) per typed character instead of the text
+  4. **Plan**: a choice between Free, Pro and Team (all three options visible), Free selected initially
+  5. **Newsletter**: a checkbox labelled "Send me product updates", unchecked initially
+  6. **Create account**: a submit button
+
+  ## Behavior
+  - Focus starts on Full name. `tab` moves focus to the next field and `shift+tab` to the previous one (wrapping
+    around). The focused field must be obvious, and a text input shows a cursor at the end of its text.
+  - In a text input, printable characters are appended and `backspace` deletes the last character.
+  - On Plan, `←` / `→` change the selected option. On Newsletter, `space` toggles it.
+  - `enter` on Create account validates the form:
+    - Full name must not be empty.
+    - Email must contain an `@` followed later by a `.` (e.g. `ada@example.com`).
+    - Password must be at least 8 characters.
+    If anything is invalid, show an error message next to (or under) every invalid field, highlight those fields,
+    and move focus to the first invalid one. Errors disappear when the form is submitted again successfully.
+  - When the form is valid, replace it with a confirmation screen that welcomes the user by name and summarizes
+    the entered values (email, plan, newsletter choice; the password must not be shown, only its length or a mask).
+  - `ctrl+c` quits at any time. On the confirmation screen, `q` also quits.
+
+  Make it look like a polished, modern form: a centered panel with a title, aligned labels, and helpful hints
+  (for example the password requirement). The layout must adapt to the terminal size and redraw correctly when the
+  terminal is resized.
+scenario:
+  - snapshot: initial
+    note: The empty form with focus on Full name.
+  - type: Ada Lovelace
+  - press: tab
+  - type: ada@example
+  - press: tab
+  - type: short
+  - snapshot: typing
+    note: Name and email are filled in; the password field shows 5 mask characters and has focus.
+  - press: tab tab tab enter
+  - snapshot: validation-errors
+    note: Errors are shown for Email and Password, and focus moved to Email.
+  - type: .com
+  - press: tab backspace backspace backspace backspace backspace
+  - type: correct-horse
+  - press: tab right tab space
+  - snapshot: filled
+    note: Email is fixed, the password has 13 mask characters, Pro is selected and the newsletter box is checked (focused).
+  - press: tab enter
+  - snapshot: confirmation
+    note: A confirmation screen welcomes Ada and summarizes email, plan (Pro) and newsletter (yes), without the password.
+  - resize: { cols: 70, rows: 22 }
+  - snapshot: resized
+    note: The confirmation screen still fits after resizing to 70x22.
+  - press: q
+  - expectExit: 3000

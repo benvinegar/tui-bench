@@ -1,0 +1,420 @@
+2026-03-14T09:00:01.845Z WARN  [http] slow request /api/cart took 943ms
+2026-03-14T09:00:02.288Z INFO  [db] GET /api/users 200 333ms
+2026-03-14T09:00:02.387Z INFO  [db] order 85891 created (total $52.34)
+2026-03-14T09:00:04.397Z INFO  [auth] worker processed 43 jobs in 167ms
+2026-03-14T09:00:05.982Z DEBUG [http] db pool stats active=6 idle=1
+2026-03-14T09:00:06.133Z INFO  [http] user 526 logged in from 10.0.141.170
+2026-03-14T09:00:08.075Z WARN  [cache] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:00:10.064Z WARN  [cache] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:00:11.315Z DEBUG [db] parsed request body (3477 bytes)
+2026-03-14T09:00:12.898Z INFO  [scheduler] worker processed 42 jobs in 832ms
+2026-03-14T09:00:13.227Z WARN  [db] cache miss ratio 55% over last minute
+2026-03-14T09:00:15.342Z INFO  [scheduler] worker processed 51 jobs in 219ms
+2026-03-14T09:00:17.432Z DEBUG [auth] db pool stats active=17 idle=6
+2026-03-14T09:00:18.708Z WARN  [auth] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:00:20.115Z DEBUG [http] scheduled task 'cleanup-sessions' next run in 45s
+2026-03-14T09:00:20.855Z ERROR [scheduler] failed to refresh session token: signature mismatch
+2026-03-14T09:00:21.783Z ERROR [cache] unhandled rejection in order pipeline: TypeError: cannot read properties of undefined (reading 'sku')
+2026-03-14T09:00:22.970Z INFO  [auth] GET /api/search 404 274ms
+2026-03-14T09:00:24.547Z DEBUG [auth] parsed request body (1032 bytes)
+2026-03-14T09:00:25.264Z DEBUG [http] parsed request body (3528 bytes)
+2026-03-14T09:00:26.064Z INFO  [cache] POST /api/orders 304 309ms
+2026-03-14T09:00:28.020Z INFO  [http] order 55729 created (total $776.96)
+2026-03-14T09:00:30.365Z INFO  [auth] POST /health 200 275ms
+2026-03-14T09:00:32.564Z INFO  [worker] user 991 logged in from 10.0.14.102
+2026-03-14T09:00:33.886Z INFO  [cache] order 76109 created (total $89.83)
+2026-03-14T09:00:36.236Z DEBUG [cache] db pool stats active=18 idle=9
+2026-03-14T09:00:36.948Z INFO  [worker] POST /api/login 200 364ms
+2026-03-14T09:00:38.274Z DEBUG [db] parsed request body (202 bytes)
+2026-03-14T09:00:38.642Z INFO  [cache] PUT /api/orders/29384 304 335ms
+2026-03-14T09:00:38.754Z DEBUG [db] cache get key=user:954 hit=true
+2026-03-14T09:00:41.251Z INFO  [worker] POST /api/login 201 210ms
+2026-03-14T09:00:42.186Z INFO  [worker] worker processed 22 jobs in 23ms
+2026-03-14T09:00:43.205Z DEBUG [auth] parsed request body (2251 bytes)
+2026-03-14T09:00:45.697Z INFO  [cache] POST /health 204 54ms
+2026-03-14T09:00:47.974Z INFO  [auth] worker processed 61 jobs in 711ms
+2026-03-14T09:00:49.322Z INFO  [worker] user 302 logged in from 10.0.90.156
+2026-03-14T09:00:50.445Z ERROR [scheduler] upstream timeout calling payments-service (5588ms)
+2026-03-14T09:00:50.713Z INFO  [auth] order 61715 created (total $14.37)
+2026-03-14T09:00:53.249Z DEBUG [db] scheduled task 'cleanup-sessions' next run in 223s
+2026-03-14T09:00:55.431Z DEBUG [cache] scheduled task 'cleanup-sessions' next run in 171s
+2026-03-14T09:00:56.117Z INFO  [cache] GET /api/orders 204 281ms
+2026-03-14T09:00:56.415Z WARN  [db] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:00:57.427Z INFO  [worker] user 798 logged in from 10.0.32.78
+2026-03-14T09:00:59.004Z INFO  [worker] worker processed 56 jobs in 900ms
+2026-03-14T09:01:00.185Z INFO  [db] worker processed 36 jobs in 168ms
+2026-03-14T09:01:01.117Z DEBUG [worker] cache get key=user:249 hit=true
+2026-03-14T09:01:03.280Z INFO  [db] worker processed 54 jobs in 452ms
+2026-03-14T09:01:05.047Z DEBUG [scheduler] scheduled task 'cleanup-sessions' next run in 298s
+2026-03-14T09:01:07.007Z INFO  [http] GET /api/orders/84288 201 294ms
+2026-03-14T09:01:08.737Z DEBUG [db] cache get key=user:724 hit=true
+2026-03-14T09:01:10.876Z DEBUG [db] scheduled task 'cleanup-sessions' next run in 40s
+2026-03-14T09:01:13.036Z ERROR [http] upstream timeout calling payments-service (6371ms)
+2026-03-14T09:01:14.257Z INFO  [db] order 70158 created (total $184.33)
+2026-03-14T09:01:16.436Z INFO  [auth] worker processed 64 jobs in 38ms
+2026-03-14T09:01:17.141Z INFO  [auth] worker processed 5 jobs in 694ms
+2026-03-14T09:01:18.992Z INFO  [cache] user 630 logged in from 10.0.97.168
+2026-03-14T09:01:19.328Z INFO  [auth] user 165 logged in from 10.0.230.200
+2026-03-14T09:01:19.810Z INFO  [cache] order 85781 created (total $640.04)
+2026-03-14T09:01:20.720Z WARN  [db] slow request /api/users took 2027ms
+2026-03-14T09:01:20.874Z INFO  [worker] worker processed 43 jobs in 381ms
+2026-03-14T09:01:22.368Z INFO  [http] order 18089 created (total $277.72)
+2026-03-14T09:01:24.702Z INFO  [worker] user 958 logged in from 10.0.9.108
+2026-03-14T09:01:26.476Z DEBUG [cache] parsed request body (2808 bytes)
+2026-03-14T09:01:28.874Z DEBUG [worker] scheduled task 'cleanup-sessions' next run in 77s
+2026-03-14T09:01:31.439Z DEBUG [auth] scheduled task 'cleanup-sessions' next run in 243s
+2026-03-14T09:01:33.197Z DEBUG [http] scheduled task 'cleanup-sessions' next run in 111s
+2026-03-14T09:01:34.013Z INFO  [scheduler] order 68404 created (total $670.66)
+2026-03-14T09:01:35.105Z DEBUG [auth] scheduled task 'cleanup-sessions' next run in 196s
+2026-03-14T09:01:36.737Z INFO  [cache] worker processed 24 jobs in 83ms
+2026-03-14T09:01:39.103Z INFO  [scheduler] worker processed 42 jobs in 588ms
+2026-03-14T09:01:40.428Z INFO  [http] worker processed 22 jobs in 555ms
+2026-03-14T09:01:42.476Z INFO  [scheduler] user 869 logged in from 10.0.108.98
+2026-03-14T09:01:43.702Z DEBUG [auth] parsed request body (2438 bytes)
+2026-03-14T09:01:45.343Z WARN  [db] cache miss ratio 33% over last minute
+2026-03-14T09:01:45.914Z WARN  [auth] slow request /api/cart took 1231ms
+2026-03-14T09:01:46.286Z INFO  [db] PUT /api/orders 200 315ms
+2026-03-14T09:01:47.610Z WARN  [scheduler] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:01:48.899Z DEBUG [scheduler] scheduled task 'cleanup-sessions' next run in 20s
+2026-03-14T09:01:51.040Z DEBUG [auth] parsed request body (2681 bytes)
+2026-03-14T09:01:53.207Z INFO  [scheduler] PUT /api/orders/27878 200 248ms
+2026-03-14T09:01:55.633Z WARN  [auth] slow request /api/orders/{id} took 2804ms
+2026-03-14T09:01:55.673Z INFO  [http] order 46423 created (total $523.71)
+2026-03-14T09:01:55.971Z WARN  [worker] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:01:57.957Z INFO  [http] POST /api/search 304 110ms
+2026-03-14T09:01:59.916Z ERROR [cache] unhandled rejection in order pipeline: TypeError: cannot read properties of undefined (reading 'sku')
+2026-03-14T09:02:01.685Z DEBUG [http] cache get key=user:557 hit=true
+2026-03-14T09:02:02.799Z ERROR [scheduler] unhandled rejection in order pipeline: TypeError: cannot read properties of undefined (reading 'sku')
+2026-03-14T09:02:05.080Z ERROR [scheduler] job 2590 failed: disk quota exceeded
+2026-03-14T09:02:05.536Z INFO  [http] order 62045 created (total $777.96)
+2026-03-14T09:02:07.984Z INFO  [auth] order 85816 created (total $693.57)
+2026-03-14T09:02:10.342Z DEBUG [http] cache get key=user:981 hit=false
+2026-03-14T09:02:10.974Z DEBUG [http] scheduled task 'cleanup-sessions' next run in 267s
+2026-03-14T09:02:12.129Z WARN  [worker] retrying request to inventory-service (attempt 4/5) after timeout
+2026-03-14T09:02:13.988Z INFO  [http] GET /health 200 108ms
+2026-03-14T09:02:15.142Z INFO  [db] worker processed 6 jobs in 559ms
+2026-03-14T09:02:15.351Z INFO  [db] POST /api/users 200 137ms
+2026-03-14T09:02:17.453Z INFO  [http] POST /api/cart 201 51ms
+2026-03-14T09:02:19.211Z INFO  [http] POST /health 304 79ms
+2026-03-14T09:02:20.885Z INFO  [http] user 815 logged in from 10.0.198.78
+2026-03-14T09:02:21.722Z DEBUG [http] db pool stats active=10 idle=4
+2026-03-14T09:02:22.014Z INFO  [auth] user 272 logged in from 10.0.74.140
+2026-03-14T09:02:24.076Z INFO  [auth] worker processed 27 jobs in 647ms
+2026-03-14T09:02:24.446Z DEBUG [scheduler] scheduled task 'cleanup-sessions' next run in 193s
+2026-03-14T09:02:25.159Z DEBUG [db] db pool stats active=18 idle=7
+2026-03-14T09:02:26.810Z INFO  [http] worker processed 3 jobs in 89ms
+2026-03-14T09:02:27.911Z DEBUG [db] scheduled task 'cleanup-sessions' next run in 25s
+2026-03-14T09:02:28.524Z INFO  [worker] PUT /api/users 200 246ms
+2026-03-14T09:02:29.409Z INFO  [scheduler] GET /health 200 179ms
+2026-03-14T09:02:30.727Z INFO  [scheduler] user 381 logged in from 10.0.182.100
+2026-03-14T09:02:32.949Z INFO  [worker] PUT /api/orders 404 332ms
+2026-03-14T09:02:34.775Z INFO  [auth] user 854 logged in from 10.0.183.153
+2026-03-14T09:02:35.296Z INFO  [db] POST /api/search 200 59ms
+2026-03-14T09:02:37.158Z INFO  [worker] order 88068 created (total $882.71)
+2026-03-14T09:02:38.580Z INFO  [http] POST /api/orders/86163 304 363ms
+2026-03-14T09:02:41.036Z DEBUG [scheduler] cache get key=user:316 hit=false
+2026-03-14T09:02:43.295Z DEBUG [worker] parsed request body (3638 bytes)
+2026-03-14T09:02:44.641Z DEBUG [cache] scheduled task 'cleanup-sessions' next run in 155s
+2026-03-14T09:02:47.038Z INFO  [worker] POST /api/cart 204 187ms
+2026-03-14T09:02:47.642Z INFO  [http] GET /api/orders/51320 200 152ms
+2026-03-14T09:02:48.207Z INFO  [worker] POST /api/search 404 272ms
+2026-03-14T09:02:50.498Z INFO  [scheduler] worker processed 7 jobs in 831ms
+2026-03-14T09:02:52.148Z INFO  [http] worker processed 19 jobs in 629ms
+2026-03-14T09:02:52.996Z INFO  [cache] order 19287 created (total $710.56)
+2026-03-14T09:02:53.956Z INFO  [worker] order 53827 created (total $879.67)
+2026-03-14T09:02:55.527Z DEBUG [worker] scheduled task 'cleanup-sessions' next run in 177s
+2026-03-14T09:02:57.911Z INFO  [db] order 63510 created (total $873.86)
+2026-03-14T09:02:58.586Z INFO  [db] order 99695 created (total $805.35)
+2026-03-14T09:02:58.695Z DEBUG [worker] db pool stats active=2 idle=4
+2026-03-14T09:03:00.712Z INFO  [auth] order 17821 created (total $760.11)
+2026-03-14T09:03:02.973Z WARN  [cache] retrying request to inventory-service (attempt 3/5) after timeout
+2026-03-14T09:03:03.854Z INFO  [worker] user 653 logged in from 10.0.61.42
+2026-03-14T09:03:04.212Z INFO  [scheduler] order 80188 created (total $212.01)
+2026-03-14T09:03:05.196Z DEBUG [db] parsed request body (3502 bytes)
+2026-03-14T09:03:06.247Z INFO  [auth] order 79774 created (total $163.46)
+2026-03-14T09:03:08.344Z INFO  [http] user 303 logged in from 10.0.154.98
+2026-03-14T09:03:10.420Z WARN  [http] cache miss ratio 33% over last minute
+2026-03-14T09:03:12.520Z INFO  [auth] worker processed 60 jobs in 416ms
+2026-03-14T09:03:13.694Z INFO  [auth] order 38268 created (total $544.65)
+2026-03-14T09:03:14.157Z WARN  [auth] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:03:14.417Z INFO  [auth] order 93921 created (total $57.75)
+2026-03-14T09:03:15.865Z INFO  [auth] GET /api/orders/58490 200 19ms
+2026-03-14T09:03:16.452Z DEBUG [cache] db pool stats active=17 idle=9
+2026-03-14T09:03:16.933Z INFO  [auth] GET /api/search 404 275ms
+2026-03-14T09:03:17.435Z DEBUG [worker] cache get key=user:368 hit=false
+2026-03-14T09:03:18.550Z INFO  [auth] worker processed 6 jobs in 147ms
+2026-03-14T09:03:20.113Z INFO  [db] user 591 logged in from 10.0.48.139
+2026-03-14T09:03:21.315Z ERROR [cache] failed to refresh session token: signature mismatch
+2026-03-14T09:03:22.230Z INFO  [cache] order 84832 created (total $756.82)
+2026-03-14T09:03:24.659Z INFO  [db] order 62218 created (total $86.19)
+2026-03-14T09:03:27.080Z INFO  [db] user 379 logged in from 10.0.174.95
+2026-03-14T09:03:29.181Z DEBUG [worker] cache get key=user:898 hit=true
+2026-03-14T09:03:29.519Z INFO  [db] order 99154 created (total $771.37)
+2026-03-14T09:03:29.780Z DEBUG [auth] scheduled task 'cleanup-sessions' next run in 200s
+2026-03-14T09:03:31.350Z INFO  [db] user 724 logged in from 10.0.54.32
+2026-03-14T09:03:32.516Z INFO  [worker] GET /api/login 200 189ms
+2026-03-14T09:03:33.560Z INFO  [http] PUT /api/users 200 216ms
+2026-03-14T09:03:34.383Z INFO  [worker] user 477 logged in from 10.0.120.85
+2026-03-14T09:03:35.981Z INFO  [db] user 893 logged in from 10.0.87.143
+2026-03-14T09:03:37.122Z DEBUG [http] cache get key=user:186 hit=false
+2026-03-14T09:03:38.227Z INFO  [cache] user 934 logged in from 10.0.150.85
+2026-03-14T09:03:39.479Z DEBUG [scheduler] scheduled task 'cleanup-sessions' next run in 205s
+2026-03-14T09:03:41.957Z INFO  [scheduler] worker processed 20 jobs in 379ms
+2026-03-14T09:03:42.319Z INFO  [scheduler] order 99091 created (total $191.97)
+2026-03-14T09:03:42.547Z INFO  [auth] worker processed 48 jobs in 252ms
+2026-03-14T09:03:43.120Z INFO  [http] POST /api/search 204 331ms
+2026-03-14T09:03:43.664Z DEBUG [db] db pool stats active=6 idle=8
+2026-03-14T09:03:45.072Z INFO  [scheduler] order 13047 created (total $272.52)
+2026-03-14T09:03:47.371Z WARN  [scheduler] slow request /api/search took 1355ms
+2026-03-14T09:03:48.493Z INFO  [cache] user 121 logged in from 10.0.67.8
+2026-03-14T09:03:50.231Z INFO  [http] user 539 logged in from 10.0.219.64
+2026-03-14T09:03:50.866Z DEBUG [auth] db pool stats active=1 idle=0
+2026-03-14T09:03:52.524Z INFO  [http] POST /api/orders/98991 404 133ms
+2026-03-14T09:03:54.390Z DEBUG [scheduler] scheduled task 'cleanup-sessions' next run in 48s
+2026-03-14T09:03:54.917Z DEBUG [worker] cache get key=user:278 hit=true
+2026-03-14T09:03:56.623Z INFO  [auth] order 74098 created (total $696.48)
+2026-03-14T09:03:58.144Z DEBUG [cache] scheduled task 'cleanup-sessions' next run in 228s
+2026-03-14T09:03:59.600Z INFO  [cache] order 77520 created (total $299.52)
+2026-03-14T09:03:59.806Z INFO  [db] POST /api/orders/81364 200 38ms
+2026-03-14T09:04:01.674Z INFO  [http] user 690 logged in from 10.0.204.229
+2026-03-14T09:04:02.337Z INFO  [auth] worker processed 49 jobs in 156ms
+2026-03-14T09:04:04.428Z ERROR [db] connection pool exhausted (max=20, waiting=14)
+2026-03-14T09:04:06.665Z ERROR [db] query timeout after 5000ms: SELECT * FROM orders WHERE customer_id = $1
+2026-03-14T09:04:09.241Z ERROR [db] connection pool exhausted (max=20, waiting=14)
+2026-03-14T09:04:10.572Z ERROR [db] replica lag 12.4s exceeds threshold, routing reads to primary
+2026-03-14T09:04:12.324Z INFO  [worker] POST /api/search 201 291ms
+2026-03-14T09:04:12.971Z ERROR [db] replica lag 12.4s exceeds threshold, routing reads to primary
+2026-03-14T09:04:13.746Z ERROR [db] connection pool exhausted (max=20, waiting=14)
+2026-03-14T09:04:16.099Z ERROR [db] replica lag 12.4s exceeds threshold, routing reads to primary
+2026-03-14T09:04:18.428Z ERROR [db] replica lag 12.4s exceeds threshold, routing reads to primary
+2026-03-14T09:04:18.531Z ERROR [db] replica lag 12.4s exceeds threshold, routing reads to primary
+2026-03-14T09:04:19.187Z ERROR [db] replica lag 12.4s exceeds threshold, routing reads to primary
+2026-03-14T09:04:19.967Z INFO  [http] order 38189 created (total $39.39)
+2026-03-14T09:04:21.477Z INFO  [http] user 471 logged in from 10.0.195.96
+2026-03-14T09:04:22.448Z INFO  [scheduler] order 86288 created (total $370.30)
+2026-03-14T09:04:24.954Z INFO  [worker] order 27481 created (total $476.15)
+2026-03-14T09:04:25.312Z INFO  [cache] GET /api/login 200 27ms
+2026-03-14T09:04:27.542Z ERROR [db] query timeout after 5000ms: SELECT * FROM orders WHERE customer_id = $1
+2026-03-14T09:04:27.626Z INFO  [cache] order 89328 created (total $691.78)
+2026-03-14T09:04:29.704Z ERROR [db] query timeout after 5000ms: SELECT * FROM orders WHERE customer_id = $1
+2026-03-14T09:04:32.156Z ERROR [db] query timeout after 5000ms: SELECT * FROM orders WHERE customer_id = $1
+2026-03-14T09:04:33.744Z INFO  [worker] PUT /api/login 200 185ms
+2026-03-14T09:04:34.265Z ERROR [db] replica lag 12.4s exceeds threshold, routing reads to primary
+2026-03-14T09:04:35.104Z INFO  [auth] user 265 logged in from 10.0.190.64
+2026-03-14T09:04:37.588Z INFO  [db] user 650 logged in from 10.0.174.64
+2026-03-14T09:04:37.768Z INFO  [worker] order 59719 created (total $697.68)
+2026-03-14T09:04:40.069Z ERROR [db] connection pool exhausted (max=20, waiting=14)
+2026-03-14T09:04:41.490Z ERROR [db] connection pool exhausted (max=20, waiting=14)
+2026-03-14T09:04:43.682Z INFO  [scheduler] worker processed 49 jobs in 163ms
+2026-03-14T09:04:44.524Z ERROR [db] query timeout after 5000ms: SELECT * FROM orders WHERE customer_id = $1
+2026-03-14T09:04:46.718Z ERROR [db] connection pool exhausted (max=20, waiting=14)
+2026-03-14T09:04:49.109Z ERROR [db] replica lag 12.4s exceeds threshold, routing reads to primary
+2026-03-14T09:04:51.665Z INFO  [auth] worker processed 18 jobs in 51ms
+2026-03-14T09:04:54.028Z ERROR [db] connection pool exhausted (max=20, waiting=14)
+2026-03-14T09:04:54.443Z INFO  [db] worker processed 45 jobs in 438ms
+2026-03-14T09:04:56.866Z ERROR [db] query timeout after 5000ms: SELECT * FROM orders WHERE customer_id = $1
+2026-03-14T09:04:57.604Z DEBUG [worker] cache get key=user:900 hit=false
+2026-03-14T09:04:58.321Z INFO  [http] POST /api/search 404 177ms
+2026-03-14T09:04:58.655Z INFO  [worker] order 27700 created (total $349.90)
+2026-03-14T09:04:59.235Z INFO  [cache] user 175 logged in from 10.0.127.200
+2026-03-14T09:05:00.231Z INFO  [auth] order 76820 created (total $802.12)
+2026-03-14T09:05:02.751Z INFO  [worker] order 31506 created (total $887.38)
+2026-03-14T09:05:04.722Z DEBUG [auth] scheduled task 'cleanup-sessions' next run in 24s
+2026-03-14T09:05:05.185Z INFO  [db] order 42837 created (total $61.38)
+2026-03-14T09:05:06.024Z INFO  [worker] GET /api/search 201 361ms
+2026-03-14T09:05:07.709Z INFO  [worker] worker processed 2 jobs in 891ms
+2026-03-14T09:05:08.519Z INFO  [worker] GET /api/search 204 210ms
+2026-03-14T09:05:10.218Z DEBUG [scheduler] db pool stats active=15 idle=8
+2026-03-14T09:05:11.722Z INFO  [scheduler] order 29869 created (total $393.43)
+2026-03-14T09:05:14.147Z INFO  [auth] GET /api/search 304 69ms
+2026-03-14T09:05:15.248Z DEBUG [cache] parsed request body (2021 bytes)
+2026-03-14T09:05:15.635Z INFO  [cache] GET /api/users 200 209ms
+2026-03-14T09:05:17.652Z INFO  [auth] user 801 logged in from 10.0.117.28
+2026-03-14T09:05:19.228Z INFO  [cache] worker processed 12 jobs in 244ms
+2026-03-14T09:05:19.742Z WARN  [http] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:05:21.011Z DEBUG [http] scheduled task 'cleanup-sessions' next run in 80s
+2026-03-14T09:05:23.251Z DEBUG [worker] parsed request body (3123 bytes)
+2026-03-14T09:05:24.649Z INFO  [worker] user 127 logged in from 10.0.96.211
+2026-03-14T09:05:25.373Z INFO  [http] worker processed 54 jobs in 557ms
+2026-03-14T09:05:27.066Z INFO  [db] order 28061 created (total $515.84)
+2026-03-14T09:05:28.723Z INFO  [auth] worker processed 24 jobs in 456ms
+2026-03-14T09:05:29.456Z INFO  [worker] GET /health 304 176ms
+2026-03-14T09:05:30.372Z WARN  [scheduler] slow request /health took 2552ms
+2026-03-14T09:05:30.467Z INFO  [worker] worker processed 5 jobs in 434ms
+2026-03-14T09:05:32.579Z INFO  [cache] order 72665 created (total $771.48)
+2026-03-14T09:05:34.372Z DEBUG [auth] scheduled task 'cleanup-sessions' next run in 135s
+2026-03-14T09:05:36.708Z INFO  [db] GET /api/orders 200 207ms
+2026-03-14T09:05:37.654Z INFO  [auth] order 10710 created (total $472.87)
+2026-03-14T09:05:39.569Z DEBUG [scheduler] scheduled task 'cleanup-sessions' next run in 215s
+2026-03-14T09:05:40.687Z WARN  [auth] slow request /api/cart took 1881ms
+2026-03-14T09:05:42.737Z INFO  [auth] POST /api/search 200 376ms
+2026-03-14T09:05:42.804Z INFO  [worker] order 79740 created (total $181.56)
+2026-03-14T09:05:43.911Z INFO  [worker] GET /api/login 200 355ms
+2026-03-14T09:05:44.007Z INFO  [scheduler] worker processed 16 jobs in 591ms
+2026-03-14T09:05:45.072Z INFO  [auth] worker processed 25 jobs in 538ms
+2026-03-14T09:05:45.931Z DEBUG [http] db pool stats active=2 idle=10
+2026-03-14T09:05:46.791Z INFO  [auth] order 35484 created (total $876.24)
+2026-03-14T09:05:48.121Z INFO  [auth] POST /api/search 200 284ms
+2026-03-14T09:05:48.487Z WARN  [cache] retrying request to inventory-service (attempt 3/5) after timeout
+2026-03-14T09:05:50.057Z INFO  [cache] user 218 logged in from 10.0.185.189
+2026-03-14T09:05:50.663Z DEBUG [auth] parsed request body (2474 bytes)
+2026-03-14T09:05:52.435Z INFO  [db] order 30907 created (total $116.15)
+2026-03-14T09:05:53.183Z INFO  [http] order 88699 created (total $761.49)
+2026-03-14T09:05:54.733Z DEBUG [auth] cache get key=user:243 hit=false
+2026-03-14T09:05:56.286Z INFO  [worker] worker processed 38 jobs in 486ms
+2026-03-14T09:05:58.011Z INFO  [cache] GET /health 200 37ms
+2026-03-14T09:05:58.678Z WARN  [scheduler] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:05:59.423Z INFO  [db] order 97903 created (total $112.76)
+2026-03-14T09:06:01.119Z INFO  [http] order 75407 created (total $542.07)
+2026-03-14T09:06:01.920Z INFO  [http] POST /health 201 237ms
+2026-03-14T09:06:03.999Z INFO  [db] worker processed 52 jobs in 782ms
+2026-03-14T09:06:04.039Z INFO  [auth] user 618 logged in from 10.0.9.120
+2026-03-14T09:06:04.342Z DEBUG [http] cache get key=user:281 hit=true
+2026-03-14T09:06:06.032Z WARN  [worker] cache miss ratio 57% over last minute
+2026-03-14T09:06:07.577Z INFO  [cache] GET /api/users 204 20ms
+2026-03-14T09:06:09.486Z INFO  [db] user 100 logged in from 10.0.89.179
+2026-03-14T09:06:11.307Z INFO  [auth] user 949 logged in from 10.0.238.194
+2026-03-14T09:06:12.059Z INFO  [cache] user 206 logged in from 10.0.115.48
+2026-03-14T09:06:13.644Z WARN  [db] retrying request to inventory-service (attempt 3/5) after timeout
+2026-03-14T09:06:14.475Z DEBUG [cache] cache get key=user:392 hit=true
+2026-03-14T09:06:15.381Z DEBUG [db] parsed request body (3225 bytes)
+2026-03-14T09:06:17.349Z INFO  [http] worker processed 1 jobs in 497ms
+2026-03-14T09:06:17.469Z ERROR [worker] upstream timeout calling payments-service (4813ms)
+2026-03-14T09:06:19.803Z INFO  [http] worker processed 35 jobs in 139ms
+2026-03-14T09:06:22.252Z INFO  [worker] order 28237 created (total $160.90)
+2026-03-14T09:06:23.736Z INFO  [db] PUT /api/search 304 25ms
+2026-03-14T09:06:26.101Z WARN  [db] cache miss ratio 57% over last minute
+2026-03-14T09:06:27.671Z ERROR [http] failed to refresh session token: signature mismatch
+2026-03-14T09:06:29.898Z INFO  [cache] user 679 logged in from 10.0.143.218
+2026-03-14T09:06:32.132Z INFO  [scheduler] worker processed 11 jobs in 766ms
+2026-03-14T09:06:34.175Z WARN  [scheduler] retrying request to inventory-service (attempt 4/5) after timeout
+2026-03-14T09:06:35.239Z INFO  [scheduler] user 662 logged in from 10.0.8.195
+2026-03-14T09:06:37.243Z DEBUG [db] db pool stats active=10 idle=6
+2026-03-14T09:06:37.356Z INFO  [auth] GET /health 200 76ms
+2026-03-14T09:06:39.487Z INFO  [http] worker processed 52 jobs in 302ms
+2026-03-14T09:06:40.337Z ERROR [cache] job 8970 failed: disk quota exceeded
+2026-03-14T09:06:41.337Z INFO  [worker] GET /health 200 281ms
+2026-03-14T09:06:41.936Z DEBUG [auth] db pool stats active=3 idle=0
+2026-03-14T09:06:42.977Z INFO  [worker] user 310 logged in from 10.0.173.234
+2026-03-14T09:06:43.576Z DEBUG [cache] cache get key=user:192 hit=true
+2026-03-14T09:06:44.136Z INFO  [http] worker processed 29 jobs in 584ms
+2026-03-14T09:06:44.870Z WARN  [worker] cache miss ratio 55% over last minute
+2026-03-14T09:06:45.960Z DEBUG [cache] db pool stats active=11 idle=9
+2026-03-14T09:06:46.368Z INFO  [db] GET /api/orders/51820 204 289ms
+2026-03-14T09:06:46.587Z INFO  [db] order 58759 created (total $524.94)
+2026-03-14T09:06:46.965Z INFO  [auth] worker processed 12 jobs in 45ms
+2026-03-14T09:06:47.577Z INFO  [cache] GET /api/login 200 146ms
+2026-03-14T09:06:49.623Z INFO  [auth] PUT /api/users 200 72ms
+2026-03-14T09:06:51.153Z DEBUG [cache] cache get key=user:839 hit=false
+2026-03-14T09:06:53.464Z DEBUG [auth] parsed request body (2724 bytes)
+2026-03-14T09:06:54.776Z INFO  [cache] order 48566 created (total $207.56)
+2026-03-14T09:06:57.310Z DEBUG [auth] cache get key=user:425 hit=true
+2026-03-14T09:06:59.146Z DEBUG [scheduler] parsed request body (1736 bytes)
+2026-03-14T09:06:59.608Z INFO  [cache] POST /api/cart 404 344ms
+2026-03-14T09:07:01.510Z ERROR [cache] upstream timeout calling payments-service (5119ms)
+2026-03-14T09:07:02.682Z INFO  [http] PUT /api/search 404 349ms
+2026-03-14T09:07:04.806Z ERROR [scheduler] failed to refresh session token: signature mismatch
+2026-03-14T09:07:06.042Z DEBUG [db] db pool stats active=18 idle=3
+2026-03-14T09:07:06.112Z INFO  [scheduler] user 957 logged in from 10.0.45.247
+2026-03-14T09:07:07.304Z INFO  [auth] worker processed 42 jobs in 776ms
+2026-03-14T09:07:09.682Z ERROR [cache] failed to refresh session token: signature mismatch
+2026-03-14T09:07:10.822Z INFO  [http] user 402 logged in from 10.0.157.215
+2026-03-14T09:07:12.769Z ERROR [db] upstream timeout calling payments-service (8962ms)
+2026-03-14T09:07:14.743Z DEBUG [auth] parsed request body (3071 bytes)
+2026-03-14T09:07:16.057Z INFO  [cache] order 12074 created (total $568.38)
+2026-03-14T09:07:16.355Z ERROR [cache] job 6570 failed: disk quota exceeded
+2026-03-14T09:07:16.884Z WARN  [db] retrying request to inventory-service (attempt 2/5) after timeout
+2026-03-14T09:07:18.969Z DEBUG [scheduler] cache get key=user:596 hit=false
+2026-03-14T09:07:20.928Z INFO  [http] user 531 logged in from 10.0.72.217
+2026-03-14T09:07:21.677Z INFO  [cache] GET /health 404 117ms
+2026-03-14T09:07:23.325Z INFO  [scheduler] order 23545 created (total $424.93)
+2026-03-14T09:07:25.381Z WARN  [db] retrying request to inventory-service (attempt 4/5) after timeout
+2026-03-14T09:07:27.637Z INFO  [worker] worker processed 41 jobs in 712ms
+2026-03-14T09:07:29.007Z INFO  [scheduler] order 43893 created (total $97.01)
+2026-03-14T09:07:29.688Z DEBUG [scheduler] parsed request body (2449 bytes)
+2026-03-14T09:07:31.240Z INFO  [http] worker processed 16 jobs in 194ms
+2026-03-14T09:07:33.609Z WARN  [auth] retrying request to inventory-service (attempt 2/5) after timeout
+2026-03-14T09:07:35.180Z DEBUG [auth] parsed request body (550 bytes)
+2026-03-14T09:07:37.365Z DEBUG [db] cache get key=user:378 hit=true
+2026-03-14T09:07:38.211Z INFO  [worker] GET /health 200 333ms
+2026-03-14T09:07:40.159Z INFO  [scheduler] worker processed 18 jobs in 126ms
+2026-03-14T09:07:40.609Z ERROR [worker] failed to refresh session token: signature mismatch
+2026-03-14T09:07:42.348Z INFO  [db] user 752 logged in from 10.0.173.241
+2026-03-14T09:07:43.324Z INFO  [http] user 291 logged in from 10.0.77.78
+2026-03-14T09:07:43.999Z DEBUG [scheduler] cache get key=user:751 hit=true
+2026-03-14T09:07:46.020Z DEBUG [cache] scheduled task 'cleanup-sessions' next run in 160s
+2026-03-14T09:07:47.221Z INFO  [db] POST /api/orders 200 235ms
+2026-03-14T09:07:49.690Z INFO  [worker] GET /api/users 304 262ms
+2026-03-14T09:07:49.964Z INFO  [auth] GET /api/cart 201 313ms
+2026-03-14T09:07:52.084Z INFO  [auth] GET /api/orders/26724 201 187ms
+2026-03-14T09:07:53.333Z ERROR [db] failed to refresh session token: signature mismatch
+2026-03-14T09:07:55.824Z INFO  [scheduler] user 546 logged in from 10.0.221.246
+2026-03-14T09:07:57.029Z INFO  [scheduler] PUT /api/users 404 206ms
+2026-03-14T09:07:58.999Z WARN  [http] cache miss ratio 33% over last minute
+2026-03-14T09:08:00.422Z DEBUG [db] db pool stats active=8 idle=3
+2026-03-14T09:08:02.455Z DEBUG [db] cache get key=user:180 hit=true
+2026-03-14T09:08:04.902Z INFO  [http] worker processed 53 jobs in 402ms
+2026-03-14T09:08:05.021Z DEBUG [http] parsed request body (3061 bytes)
+2026-03-14T09:08:06.768Z DEBUG [scheduler] db pool stats active=14 idle=9
+2026-03-14T09:08:08.495Z WARN  [worker] slow request /api/login took 1141ms
+2026-03-14T09:08:10.953Z INFO  [db] user 756 logged in from 10.0.36.177
+2026-03-14T09:08:13.180Z WARN  [auth] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:08:15.333Z INFO  [worker] user 838 logged in from 10.0.101.51
+2026-03-14T09:08:16.721Z INFO  [http] order 39650 created (total $428.66)
+2026-03-14T09:08:16.908Z INFO  [worker] POST /api/orders 201 238ms
+2026-03-14T09:08:18.639Z DEBUG [http] parsed request body (2243 bytes)
+2026-03-14T09:08:20.391Z INFO  [auth] POST /api/search 200 290ms
+2026-03-14T09:08:21.196Z INFO  [scheduler] order 63188 created (total $128.84)
+2026-03-14T09:08:21.797Z INFO  [auth] worker processed 22 jobs in 283ms
+2026-03-14T09:08:24.048Z INFO  [scheduler] order 48186 created (total $761.65)
+2026-03-14T09:08:24.862Z DEBUG [worker] cache get key=user:924 hit=true
+2026-03-14T09:08:27.142Z DEBUG [scheduler] cache get key=user:113 hit=false
+2026-03-14T09:08:27.841Z WARN  [auth] deprecated header X-Client-Version used by 3 clients
+2026-03-14T09:08:29.296Z DEBUG [cache] parsed request body (2831 bytes)
+2026-03-14T09:08:30.856Z INFO  [scheduler] order 32335 created (total $386.92)
+2026-03-14T09:08:32.606Z INFO  [http] GET /api/search 200 145ms
+2026-03-14T09:08:35.043Z INFO  [scheduler] user 923 logged in from 10.0.245.86
+2026-03-14T09:08:36.009Z DEBUG [worker] cache get key=user:737 hit=true
+2026-03-14T09:08:37.365Z DEBUG [cache] cache get key=user:633 hit=false
+2026-03-14T09:08:38.496Z INFO  [auth] PUT /api/search 200 195ms
+2026-03-14T09:08:39.437Z INFO  [http] GET /api/cart 200 238ms
+2026-03-14T09:08:41.064Z INFO  [worker] worker processed 36 jobs in 784ms
+2026-03-14T09:08:42.031Z INFO  [worker] user 923 logged in from 10.0.18.149
+2026-03-14T09:08:42.256Z DEBUG [db] scheduled task 'cleanup-sessions' next run in 291s
+2026-03-14T09:08:42.974Z INFO  [db] worker processed 60 jobs in 447ms
+2026-03-14T09:08:43.031Z DEBUG [auth] scheduled task 'cleanup-sessions' next run in 261s
+2026-03-14T09:08:45.421Z INFO  [scheduler] GET /api/orders 201 352ms
+2026-03-14T09:08:47.045Z INFO  [auth] user 630 logged in from 10.0.249.250
+2026-03-14T09:08:48.718Z INFO  [auth] POST /api/orders 304 13ms
+2026-03-14T09:08:50.057Z INFO  [worker] GET /api/search 404 238ms
+2026-03-14T09:08:51.434Z DEBUG [scheduler] cache get key=user:569 hit=true
+2026-03-14T09:08:52.023Z INFO  [auth] GET /api/cart 304 76ms
+2026-03-14T09:08:52.487Z INFO  [auth] GET /api/login 404 7ms
+2026-03-14T09:08:53.518Z WARN  [db] cache miss ratio 47% over last minute
+2026-03-14T09:08:54.582Z WARN  [http] retrying request to inventory-service (attempt 3/5) after timeout
+2026-03-14T09:08:55.509Z DEBUG [http] scheduled task 'cleanup-sessions' next run in 215s
+2026-03-14T09:08:56.792Z DEBUG [auth] scheduled task 'cleanup-sessions' next run in 75s
+2026-03-14T09:08:57.301Z INFO  [cache] order 43225 created (total $896.07)
+2026-03-14T09:08:58.793Z INFO  [cache] worker processed 33 jobs in 826ms
+2026-03-14T09:09:00.479Z INFO  [worker] order 92848 created (total $824.03)
+2026-03-14T09:09:00.790Z INFO  [auth] POST /api/orders/99112 304 328ms
+2026-03-14T09:09:00.945Z INFO  [scheduler] user 779 logged in from 10.0.160.53
+2026-03-14T09:09:03.508Z INFO  [cache] worker processed 63 jobs in 44ms
+2026-03-14T09:09:05.032Z DEBUG [auth] db pool stats active=5 idle=1
+2026-03-14T09:09:06.932Z WARN  [http] slow request /api/users took 1495ms
+2026-03-14T09:09:07.168Z DEBUG [scheduler] parsed request body (1294 bytes)
+2026-03-14T09:09:09.132Z DEBUG [db] parsed request body (2157 bytes)
+2026-03-14T09:09:11.084Z INFO  [http] worker processed 12 jobs in 217ms
+2026-03-14T09:09:13.396Z ERROR [http] job 6520 failed: disk quota exceeded
+2026-03-14T09:09:15.776Z DEBUG [db] parsed request body (1795 bytes)
+2026-03-14T09:09:17.130Z DEBUG [auth] cache get key=user:599 hit=false
+2026-03-14T09:09:18.930Z INFO  [scheduler] PUT /api/users 204 303ms
+2026-03-14T09:09:19.462Z DEBUG [http] cache get key=user:289 hit=false
+2026-03-14T09:09:19.756Z INFO  [db] user 468 logged in from 10.0.60.98
+2026-03-14T09:09:21.343Z INFO  [http] worker processed 52 jobs in 744ms
+2026-03-14T09:09:22.338Z DEBUG [http] db pool stats active=11 idle=10
+2026-03-14T09:09:24.055Z INFO  [auth] worker processed 52 jobs in 601ms
+2026-03-14T09:09:26.527Z INFO  [http] user 477 logged in from 10.0.36.53
+2026-03-14T09:09:28.225Z ERROR [scheduler] upstream timeout calling payments-service (7530ms)
+2026-03-14T09:09:28.282Z DEBUG [auth] parsed request body (2545 bytes)
+2026-03-14T09:09:30.424Z INFO  [scheduler] order 74926 created (total $690.74)

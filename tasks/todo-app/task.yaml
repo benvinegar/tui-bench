@@ -1,0 +1,70 @@
+id: todo-app
+title: Todo list
+summary: A keyboard-driven todo list with filters, an add prompt, delete confirmation and a help overlay.
+size: { cols: 100, rows: 30 }
+tags: [list, input, modal]
+prompt: |
+  Build a todo list manager.
+
+  ## Data
+  On start, load the todos from `data/todos.json`: an array of objects with `id` (number), `title` (string),
+  `done` (boolean), `priority` ("high" | "medium" | "low") and `tags` (array of strings). Keep the file order.
+  Changes only live in memory; do not write the file.
+
+  ## Screen
+  - A header with the app name and live counts of active and completed todos.
+  - Filter tabs **All**, **Active** and **Done**, with the current one clearly indicated.
+  - The list of todos matching the filter. Each row shows a checkbox-style done indicator, the title, the priority and
+    the tags. Completed todos must look visibly different from active ones. The selected row is highlighted.
+  - A footer that lists the main key bindings.
+  - If the filter matches nothing, show a friendly empty-state message instead of a blank area.
+
+  ## Keys
+  | Key | Action |
+  |---|---|
+  | `j` / `↓`, `k` / `↑` | Move the selection down / up (stop at the ends) |
+  | `space` | Toggle the selected todo between done and active |
+  | `a` | Open an input prompt to add a todo. Typed text appears in the prompt; `backspace` deletes; `enter` adds the todo (active, priority "medium", no tags) at the end of the list and closes the prompt; `esc` cancels. Empty titles are not added. |
+  | `d` | Ask for confirmation to delete the selected todo, showing its title. `y` deletes it, any other key cancels. |
+  | `1` / `2` / `3` | Show All / Active / Done todos |
+  | `?` | Toggle a help overlay listing every key binding; while it is open, `?` or `esc` closes it |
+  | `q` | Quit (not while the add prompt is open, where `q` is just a letter) |
+
+  After toggling, adding or deleting, keep the selection on a sensible row (never past the end of the list).
+  The layout must adapt to the terminal size and redraw correctly when the terminal is resized.
+scenario:
+  - snapshot: initial
+    note: First load. All 8 todos, the first one selected, 2 of them already done.
+  - press: j j space
+  - snapshot: toggled
+    note: The third todo ("Write unit tests for the parser") was toggled to done and is still selected.
+  - press: a
+  - type: Water the plants
+  - snapshot: add-prompt
+    note: The add prompt is open with "Water the plants" typed in.
+  - press: enter
+  - snapshot: added
+    note: The new todo appears at the end of the list; counts updated.
+  - press: "2"
+  - snapshot: filter-active
+    note: Only active todos are shown and the Active tab is indicated.
+  - press: "3"
+  - snapshot: filter-done
+    note: Only completed todos are shown.
+  - press: "1"
+  - press: k k
+  - press: d
+  - snapshot: confirm-delete
+    note: A confirmation for deleting the selected todo, showing its title.
+  - press: "y"
+  - snapshot: deleted
+    note: The todo is gone and the selection is on a valid row.
+  - press: "?"
+  - snapshot: help
+    note: The help overlay lists every key binding.
+  - press: "?"
+  - resize: { cols: 70, rows: 20 }
+  - snapshot: resized
+    note: After resizing to 70x20 the layout still fits and is readable.
+  - press: q
+  - expectExit: 3000

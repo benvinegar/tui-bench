@@ -1,0 +1,11 @@
+[package]
+name = "weatherline"
+version = "0.4.2"
+edition = "2021"
+description = "A tiny command-line weather dashboard"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

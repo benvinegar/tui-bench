@@ -1,0 +1,59 @@
+id: kanban
+title: Kanban board
+summary: A multi-column kanban board with card selection, moving cards between columns, a detail modal and card creation.
+size: { cols: 110, rows: 30 }
+tags: [columns, cards, modal, input]
+prompt: |
+  Build a kanban board.
+
+  ## Data
+  Load `data/board.json`: a `title` and `columns`, each with `id`, `title` and `cards`. A card has `id`, `title`,
+  `description`, `tags` (array of strings), `assignee` (string or null) and `points` (number). Changes only live in
+  memory; do not write the file.
+
+  ## Screen
+  - The board title at the top.
+  - The columns side by side, splitting the width evenly, each with its title and number of cards.
+  - Each card is drawn as a small box (or similar) showing its id, title, assignee (or "unassigned") and points;
+    tags are shown in a compact form.
+  - Exactly one card is selected and clearly highlighted; the column that contains it is also indicated. At startup
+    the first card of the first column is selected.
+  - A footer that lists the main key bindings.
+  - If a column has more cards than fit, it scrolls so the selected card stays visible.
+
+  ## Keys
+  | Key | Action |
+  |---|---|
+  | `h` / `←`, `l` / `→` | Select the previous / next column (skipping nothing; an empty column can be selected) and the card at the same position, or the closest one |
+  | `j` / `↓`, `k` / `↑` | Select the next / previous card in the column |
+  | `H` / `L` (shift) | Move the selected card to the end of the previous / next column. The moved card stays selected. |
+  | `enter` | Open a modal with all of the selected card's details, including the full description; `esc` closes it |
+  | `n` | Open an input prompt to add a card to the selected column. Typed text appears in it, `backspace` deletes, `enter` adds a card with that title at the end of the column (id `NEW-1`, `NEW-2`, …, no description, tags or assignee, 1 point) and selects it, `esc` cancels. |
+  | `q` | Quit (not while the input prompt is open) |
+
+  The layout must adapt to the terminal size and redraw correctly when the terminal is resized.
+scenario:
+  - snapshot: initial
+    note: Four columns; WEB-12 in Backlog is selected.
+  - press: l j
+  - snapshot: navigate
+    note: WEB-9 in In Progress is selected.
+  - press: L
+  - snapshot: moved
+    note: WEB-9 moved to the end of Review and is still selected; In Progress has 1 card, Review has 2.
+  - press: enter
+  - snapshot: detail
+    note: A modal shows all details of WEB-9, including the full description.
+  - press: esc h h
+  - press: n
+  - type: Write release notes
+  - snapshot: new-card-prompt
+    note: The input prompt is open with "Write release notes" typed in.
+  - press: enter
+  - snapshot: new-card
+    note: NEW-1 "Write release notes" is added at the end of the selected column and selected.
+  - resize: { cols: 80, rows: 24 }
+  - snapshot: resized
+    note: After resizing to 80x24 all four columns still fit and cards stay legible.
+  - press: q
+  - expectExit: 3000
