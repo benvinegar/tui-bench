@@ -43,7 +43,7 @@ const ratatui: Stack = {
 - This is a Rust (edition 2024) binary crate named \`app\` at the workspace root. The entry point is \`src/main.rs\`.
 - \`Cargo.toml\` already depends on \`ratatui = "0.30"\`, \`crossterm = "0.29"\`, \`serde\` and \`serde_json\`. You may add other crates from crates.io by editing \`Cargo.toml\`.
 - It is built with \`cargo build --release\` and the binary is run with the workspace root as its working directory.
-- The \`build\` tool runs the same build and returns compiler output.`,
+- The \`build\` tool (when you have one) runs the same build and returns compiler output.`,
   async build(ws) {
     return cargoLock.run(async () => {
       const r = await exec("cargo", ["build", "--release", "--color", "never"], {
@@ -80,9 +80,9 @@ const opentui: Stack = {
 
 - This is a Bun + TypeScript project at the workspace root. The entry point is \`src/index.ts\`.
 - \`package.json\` already depends on \`@opentui/core\` 0.7.0. You may add other npm packages (for example \`@opentui/react\` or \`@opentui/solid\`) by editing \`package.json\`; they are installed with \`bun install\`.
-- The type declarations of installed packages can be read with \`read_file\`, e.g. \`node_modules/@opentui/core/index.d.ts\` and \`node_modules/@opentui/core/renderables/*.d.ts\`.
+- The type declarations of installed packages are in \`node_modules\`, e.g. \`node_modules/@opentui/core/index.d.ts\` and \`node_modules/@opentui/core/renderables/*.d.ts\`.
 - It is run with \`bun run src/index.ts\` from the workspace root.
-- The \`build\` tool runs \`bun install\` and then \`tsc --noEmit\` and returns their output. Type errors don't stop the app from running, but you should fix them.`,
+- Building means \`bun install\` followed by \`tsc --noEmit\` (the \`build\` tool, when you have one, runs both). Type errors don't stop the app from running, but you should fix them.`,
   async build(ws) {
     const r = await exec("bun", ["install"], { cwd: ws, env: { NO_COLOR: "1" }, timeoutMs: BUILD_TIMEOUT });
     const output = r.timedOut ? r.output + "\n[bun install timed out]" : r.output;

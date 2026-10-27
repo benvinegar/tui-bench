@@ -2,10 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
 import type { Stack, BuildResult } from "../stacks.ts";
-import { installFixtures, type Task } from "../tasks.ts";
-import { runScenario, Step } from "../terminal/scenario.ts";
-import { snapshotToText } from "../terminal/snapshot.ts";
-import { confine, listFiles, truncateMiddle } from "../util.ts";
+import { previewApp } from "../preview.ts";
+import type { Task } from "../tasks.ts";
+import { Step } from "../terminal/scenario.ts";
+import { confine, listFiles } from "../util.ts";
 
 export interface ToolSpec {
   name: string;
@@ -151,20 +151,7 @@ export function makeTools(ctx: ToolContext): ToolSpec[] {
         const b = await build();
         if (!b.ok) return `BUILD FAILED, app not started\n\n${b.output}`;
         ctx.stats.runs++;
-        installFixtures(ctx.task, ws);
-        const all: Step[] = [...steps];
-        if (!all.length || !("snapshot" in all[all.length - 1]!)) all.push({ snapshot: "end" });
-        const cmd = ctx.stack.runCommand(ws);
-        const r = await runScenario(
-          { ...cmd, cwd: ws, cols: cols ?? ctx.task.size.cols, rows: rows ?? ctx.task.size.rows },
-          all,
-          { startupTimeoutMs: 15000 },
-        );
-        const parts = r.snapshots.map((s) => `[${s.name}] ${s.cols}x${s.rows}\n${snapshotToText(s)}`);
-        if (r.crashed || r.error) parts.push(`App problem: ${r.error ?? "crashed"}`);
-        if (r.exit) parts.push(`App exited with code ${r.exit.code} after ${r.exit.at}ms.`);
-        if (r.exit && r.exit.code !== 0) parts.push(appOutputTail(r.cast));
-        return truncateMiddle(parts.join("\n\n"), 30000);
+        return previewApp(ctx.stack, ctx.task, ws, steps, { cols, rows });
       },
     },
     {
@@ -177,21 +164,6 @@ export function makeTools(ctx: ToolContext): ToolSpec[] {
       },
     },
   ];
-}
-
-/** The last bytes an app printed, with escape sequences stripped: usually a panic message or stack trace. */
-function appOutputTail(cast: string): string {
-  const out = cast
-    .split("\n")
-    .slice(1)
-    .filter(Boolean)
-    .map((l) => JSON.parse(l) as [number, string, string])
-    .filter((e) => e[1] === "o")
-    .map((e) => e[2])
-    .join("");
-  // eslint-disable-next-line no-control-regex
-  const plain = out.replace(/\x1b\[[0-9;?<>=]*[ -/]*[@-~]|\x1b[\]P_^][^\x07\x1b]*(\x07|\x1b\\)|\x1b[()][0-9A-Za-z]|\x1b[=>78DEHMNOZc]/g, "");
-  return "Last output:\n" + plain.slice(-2000).trim();
 }
 
 /** Run a tool by name with validation, mapping failures to an error string. */

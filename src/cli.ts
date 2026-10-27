@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { Command } from "commander";
+import YAML from "yaml";
+import { z } from "zod";
 import { capture, findEntries } from "./capture.ts";
 import { Entry } from "./entry.ts";
 import { generate, importEntry, prepareWorkspace } from "./generate.ts";
@@ -12,7 +14,8 @@ import { buildReport } from "./report/build.ts";
 import { serve } from "./report/server.ts";
 import { STACKS, getStack } from "./stacks.ts";
 import { listTasks, loadTask } from "./tasks.ts";
-import { runScenario } from "./terminal/scenario.ts";
+import { runScenario, Step } from "./terminal/scenario.ts";
+import { previewApp } from "./preview.ts";
 import { snapshotToText, type Snapshot } from "./terminal/snapshot.ts";
 import { pool, readJson } from "./util.ts";
 
@@ -100,6 +103,30 @@ program
     if (!snaps) throw new Error(`No capture for ${e.id}`);
     for (const snap of snaps) log(`\n[${snap.name}] at ${snap.at}ms\n${snapshotToText(snap)}`);
     log(JSON.stringify(e.capture(), null, 2));
+  });
+
+program
+  .command("preview <dir>")
+  .description("Build the app in <dir>, run it with scripted input and print plain-text screenshots (for agents self-testing)")
+  .requiredOption("-t, --task <id>", "task id (sets terminal size and data fixtures)")
+  .requiredOption("-s, --stack <id>", "stack id")
+  .option("--steps <yaml>", 'steps as a YAML/JSON list, e.g. \'[{press: "j j"}, {snapshot: x}]\'', "[]")
+  .option("--cols <n>", "terminal columns (default: the task's)")
+  .option("--rows <n>", "terminal rows (default: the task's)")
+  .action(async (dir, o) => {
+    const stack = getStack(o.stack);
+    const task = loadTask(o.task);
+    const parsed = z.array(Step).safeParse(YAML.parse(o.steps));
+    if (!parsed.success) throw new Error(`Invalid --steps:\n${z.prettifyError(parsed.error)}`);
+    const ws = path.resolve(dir);
+    const b = await stack.check(ws);
+    if (!b.ok) {
+      log(`BUILD FAILED\n\n${b.output}`);
+      process.exitCode = 1;
+      return;
+    }
+    if (b.typecheckOk === false) log(`TYPECHECK FAILED (the app still runs)\n\n${b.output}\n`);
+    log(await previewApp(stack, task, ws, parsed.data, { cols: o.cols && +o.cols, rows: o.rows && +o.rows }));
   });
 
 program

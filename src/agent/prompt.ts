@@ -16,7 +16,14 @@ returns plain-text screenshots of the screen (colors and styles are not shown). 
 When the app is complete, call \`finish\` with a short summary. Your turn budget is limited, so batch your work.`
     : `## How you work
 
-You are running as a coding agent inside the workspace directory. Edit files there directly.`;
+You are running as a coding agent inside the workspace directory. Edit files there directly.
+To see your app the way the benchmark will, run it in a ${task.size.cols}x${task.size.rows} pseudo-terminal with scripted
+input and get plain-text screenshots back (colors and styles are not shown):
+
+    tuibench preview . --task ${task.id} --stack ${stack.id} --steps '[{press: "j j enter"}, {snapshot: after}, {type: "hi"}, {resize: {cols: 80, rows: 24}}]'
+
+Steps: {press: "<keys>"}, {type: "<text>"}, {wait: <ms>}, {resize: {cols, rows}}, {snapshot: <name>}. A screenshot is
+always taken at the end. Key names: ${KEY_NAMES_HELP}`;
 
   return `You are building a terminal user interface (TUI) application. Your work is part of a benchmark: after you finish,
 the app is built from the workspace, launched in a ${task.size.cols}x${task.size.rows} terminal (xterm-256color, truecolor), driven

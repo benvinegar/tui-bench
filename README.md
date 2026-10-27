@@ -47,6 +47,7 @@ export ANTHROPIC_API_KEY=...          # and/or OPENAI_API_KEY, OPENROUTER_API_KE
 | `tuibench capture [-t/-s/-m filters]` | Rebuild results and replay the task scenario (e.g. after editing a scenario) |
 | `tuibench import <dir> -t task -s stack -m label` | Add an app built elsewhere: another agent, a human baseline, a past run |
 | `tuibench show <task> <stack> <model>` | Print a result's captured screens as text |
+| `tuibench preview <dir> -t task -s stack --steps '[{press: "j j"}]'` | Build an app and print text screenshots after scripted input; this is how CLI agents (the `command` provider) self-test |
 | `tuibench serve [--host 0.0.0.0]` | Build and serve the report; votes are saved to `judgments/judgments.jsonl` |
 | `tuibench report [--standalone]` | Build the report; `--standalone` makes one self-contained HTML file to share (votes then live in the browser and can be exported/imported) |
 | `tuibench leaderboard [--by model\|stack\|model_stack]` | Ratings from the judgments |

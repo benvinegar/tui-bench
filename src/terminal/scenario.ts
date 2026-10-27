@@ -73,11 +73,11 @@ export async function runScenario(
     }
   } catch (e) {
     error = e instanceof Error ? e.message : String(e);
-  } finally {
-    await s.kill();
   }
-
+  // Exiting on its own without being asked to (no expectExit step) is a crash; being killed after the last step is not.
   const crashed = s.exit !== null && cleanExit === null;
+  await s.kill();
+
   const result: ScenarioResult = {
     started: snapshots.length > 0 || s.events.some((e) => e[1] === "o"),
     snapshots,
