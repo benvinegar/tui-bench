@@ -1,0 +1,314 @@
+{
+  "account": {
+    "name": "Ada Park",
+    "email": "ada@northwind.dev"
+  },
+  "now": "2026-03-12T14:30:00Z",
+  "folders": [
+    "Inbox",
+    "Starred",
+    "Sent",
+    "Drafts",
+    "Archive",
+    "Trash"
+  ],
+  "messages": [
+    {
+      "id": "m01",
+      "folder": "inbox",
+      "from": {
+        "name": "Priya Raman",
+        "email": "priya@northwind.dev"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-12T13:58:00Z",
+      "subject": "Q2 planning offsite: agenda draft",
+      "body": "Hi Ada,\n\nHere's the first draft of the agenda for the offsite on the 26th. I kept the mornings for strategy and the afternoons for team breakouts.\n\nDay 1\n- 09:30 Welcome and goals for Q2\n- 10:00 Product roadmap review (you + Tom)\n- 13:30 Breakouts by team\n\nDay 2\n- 09:30 Customer panel\n- 11:00 Hiring plan\n- 14:00 Wrap-up and owners\n\nCan you take the roadmap session? Let me know by Friday.\n\nThanks,\nPriya",
+      "read": false,
+      "starred": true,
+      "attachments": []
+    },
+    {
+      "id": "m02",
+      "folder": "inbox",
+      "from": {
+        "name": "GitHub",
+        "email": "notifications@github.com"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-12T12:41:00Z",
+      "subject": "[northwind/api] Fix race in session refresh (#1482)",
+      "body": "tom-okafor requested your review on this pull request.\n\nThe session refresh could run twice when two requests arrived within the same tick, which invalidated the newer token. This change adds a per-user lock and a regression test.\n\n3 files changed, 84 additions, 12 deletions.",
+      "read": false,
+      "starred": false,
+      "attachments": []
+    },
+    {
+      "id": "m03",
+      "folder": "inbox",
+      "from": {
+        "name": "Lena Fischer",
+        "email": "lena.fischer@acme-design.co"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-12T10:15:00Z",
+      "subject": "Re: Dashboard redesign - round 2",
+      "body": "Hi Ada,\n\nThanks for the feedback on round 1. In this round:\n\n1. The navigation moved to a collapsible sidebar.\n2. Charts use the new color scale, which is readable for color-blind users.\n3. Empty states have illustrations and a clear next step.\n\nThe Figma file and my notes are attached. Could we review together on Monday at 15:00?\n\nBest,\nLena\n\n> On Mar 5, Ada Park wrote:\n> The KPI row feels crowded. Can we try fewer, bigger numbers?",
+      "read": true,
+      "starred": false,
+      "attachments": [
+        {
+          "name": "dashboard-v2.fig",
+          "size": 4823112
+        },
+        {
+          "name": "notes.pdf",
+          "size": 182044
+        }
+      ]
+    },
+    {
+      "id": "m04",
+      "folder": "inbox",
+      "from": {
+        "name": "Cloudnine Billing",
+        "email": "billing@cloudnine.io"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-11T16:02:00Z",
+      "subject": "Your invoice for March is ready",
+      "body": "Hello,\n\nYour invoice INV-20419 for March 2026 is ready.\n\nAmount due: $1,284.00\nDue date: March 25, 2026\n\nThe PDF is attached. You can also view it in the billing dashboard.\n\nCloudnine Billing",
+      "read": false,
+      "starred": false,
+      "attachments": [
+        {
+          "name": "invoice-2026-03.pdf",
+          "size": 48211
+        }
+      ]
+    },
+    {
+      "id": "m05",
+      "folder": "inbox",
+      "from": {
+        "name": "Tom Okafor",
+        "email": "tom@northwind.dev"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-11T09:30:00Z",
+      "subject": "Lunch Thursday?",
+      "body": "Want to grab lunch on Thursday? The new ramen place on 5th opened last week. 12:30?\n\nTom",
+      "read": true,
+      "starred": false,
+      "attachments": []
+    },
+    {
+      "id": "m06",
+      "folder": "inbox",
+      "from": {
+        "name": "Northwind People Team",
+        "email": "people@northwind.dev"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-10T08:00:00Z",
+      "subject": "Reminder: submit your expense reports",
+      "body": "Hi all,\n\nA reminder that February expense reports are due this Friday. Please attach receipts for anything over $25.\n\nThanks,\nThe People Team",
+      "read": true,
+      "starred": false,
+      "attachments": []
+    },
+    {
+      "id": "m07",
+      "folder": "inbox",
+      "from": {
+        "name": "Marco Bellini",
+        "email": "marco@bellini.studio"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-09T18:45:00Z",
+      "subject": "Invoice #2026-014 - illustration work",
+      "body": "Hi Ada,\n\nPlease find attached my invoice for the onboarding illustrations (12 pieces). Payment terms are 30 days.\n\nIt was a pleasure working with you!\n\nMarco",
+      "read": true,
+      "starred": true,
+      "attachments": [
+        {
+          "name": "invoice-2026-014.pdf",
+          "size": 96320
+        }
+      ]
+    },
+    {
+      "id": "m08",
+      "folder": "inbox",
+      "from": {
+        "name": "Sam Lee",
+        "email": "sam.lee@gmail.com"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-08T11:20:00Z",
+      "subject": "Photos from the hike",
+      "body": "The one from the ridge came out great. More in the shared album!\n\nSam",
+      "read": true,
+      "starred": false,
+      "attachments": [
+        {
+          "name": "IMG_2041.jpg",
+          "size": 3201114
+        }
+      ]
+    },
+    {
+      "id": "m09",
+      "folder": "inbox",
+      "from": {
+        "name": "Terminal Weekly",
+        "email": "hello@terminalweekly.com"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-07T07:00:00Z",
+      "subject": "Terminal Weekly #212: TUIs are back",
+      "body": "This week: why terminal UIs are having a moment, a deep dive into the kitty keyboard protocol, and five TUI apps we can't stop using.",
+      "read": true,
+      "starred": false,
+      "attachments": []
+    },
+    {
+      "id": "m10",
+      "folder": "sent",
+      "from": {
+        "name": "Ada Park",
+        "email": "ada@northwind.dev"
+      },
+      "to": [
+        {
+          "name": "Priya Raman",
+          "email": "priya@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-11T15:10:00Z",
+      "subject": "Re: Headcount for Q2",
+      "body": "Priya, two engineers and one designer is what we need. I'll write up the reasoning before the offsite.\n\nAda",
+      "read": true,
+      "starred": false,
+      "attachments": []
+    },
+    {
+      "id": "m11",
+      "folder": "drafts",
+      "from": {
+        "name": "Ada Park",
+        "email": "ada@northwind.dev"
+      },
+      "to": [
+        {
+          "name": "Lena Fischer",
+          "email": "lena.fischer@acme-design.co"
+        }
+      ],
+      "cc": [],
+      "date": "2026-03-06T17:00:00Z",
+      "subject": "Re: Dashboard redesign",
+      "body": "Hi Lena, thanks for round 1! A few thoughts:\n- The KPI row feels crowded",
+      "read": true,
+      "starred": false,
+      "attachments": []
+    },
+    {
+      "id": "m12",
+      "folder": "archive",
+      "from": {
+        "name": "Tom Okafor",
+        "email": "tom@northwind.dev"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-02-27T14:00:00Z",
+      "subject": "Postmortem: Feb 26 outage",
+      "body": "Root cause: an expired certificate on the internal load balancer. Action items are in the doc.",
+      "read": true,
+      "starred": false,
+      "attachments": []
+    },
+    {
+      "id": "m13",
+      "folder": "trash",
+      "from": {
+        "name": "Terminal Weekly",
+        "email": "hello@terminalweekly.com"
+      },
+      "to": [
+        {
+          "name": "Ada Park",
+          "email": "ada@northwind.dev"
+        }
+      ],
+      "cc": [],
+      "date": "2026-02-28T07:00:00Z",
+      "subject": "Terminal Weekly #211",
+      "body": "Last week's issue.",
+      "read": true,
+      "starred": false,
+      "attachments": []
+    }
+  ]
+}

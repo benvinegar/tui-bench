@@ -1,0 +1,413 @@
+{
+  "now": "2026-03-12T14:30:00",
+  "weekStartsOn": "monday",
+  "calendars": [
+    {
+      "id": "work",
+      "name": "Work",
+      "color": "#4f8ef7"
+    },
+    {
+      "id": "personal",
+      "name": "Personal",
+      "color": "#3fbf7f"
+    },
+    {
+      "id": "holidays",
+      "name": "Holidays",
+      "color": "#e5534b"
+    }
+  ],
+  "events": [
+    {
+      "id": "e01",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-09T09:30",
+      "end": "2026-03-09T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e02",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-10T09:30",
+      "end": "2026-03-10T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e03",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-11T09:30",
+      "end": "2026-03-11T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e04",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-12T09:30",
+      "end": "2026-03-12T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e05",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-13T09:30",
+      "end": "2026-03-13T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e06",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-16T09:30",
+      "end": "2026-03-16T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e07",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-17T09:30",
+      "end": "2026-03-17T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e08",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-18T09:30",
+      "end": "2026-03-18T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e09",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-19T09:30",
+      "end": "2026-03-19T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e10",
+      "title": "Standup",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-20T09:30",
+      "end": "2026-03-20T09:45",
+      "location": "Video call",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e11",
+      "title": "Design review",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-09T11:00",
+      "end": "2026-03-09T12:00",
+      "location": "Room Atlas",
+      "attendees": [
+        "Lena Fischer",
+        "Priya Raman",
+        "Ada Park"
+      ],
+      "description": "Round 2 of the dashboard redesign. Please look at the Figma file beforehand."
+    },
+    {
+      "id": "e12",
+      "title": "1:1 with Priya",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-09T15:00",
+      "end": "2026-03-09T15:30",
+      "location": "Priya's office",
+      "attendees": [
+        "Priya Raman",
+        "Ada Park"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e13",
+      "title": "Sprint planning",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-10T10:00",
+      "end": "2026-03-10T11:30",
+      "location": "Room Orion",
+      "attendees": [
+        "Engineering team"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e14",
+      "title": "Gym",
+      "calendar": "personal",
+      "allDay": false,
+      "start": "2026-03-10T18:00",
+      "end": "2026-03-10T19:00",
+      "location": "Northside Climbing",
+      "attendees": [],
+      "description": ""
+    },
+    {
+      "id": "e15",
+      "title": "Hiring sync",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-11T13:00",
+      "end": "2026-03-11T14:00",
+      "location": "Room Atlas",
+      "attendees": [
+        "Priya Raman",
+        "Tom Okafor",
+        "Ada Park"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e16",
+      "title": "Interview: backend candidate",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-11T13:30",
+      "end": "2026-03-11T14:30",
+      "location": "Video call",
+      "attendees": [
+        "Tom Okafor",
+        "Ada Park"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e17",
+      "title": "Dinner with Sam",
+      "calendar": "personal",
+      "allDay": false,
+      "start": "2026-03-11T19:30",
+      "end": "2026-03-11T21:00",
+      "location": "Osteria Lupa",
+      "attendees": [],
+      "description": ""
+    },
+    {
+      "id": "e18",
+      "title": "Release readiness",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-12T10:00",
+      "end": "2026-03-12T11:00",
+      "location": "Room Orion",
+      "attendees": [
+        "Engineering team",
+        "Sam Lee"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e19",
+      "title": "Lunch with Tom",
+      "calendar": "personal",
+      "allDay": false,
+      "start": "2026-03-12T12:30",
+      "end": "2026-03-12T13:30",
+      "location": "Ramen Kazu, 5th Ave",
+      "attendees": [],
+      "description": ""
+    },
+    {
+      "id": "e20",
+      "title": "PR review block",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-12T14:00",
+      "end": "2026-03-12T16:00",
+      "location": "",
+      "attendees": [],
+      "description": "Focus time. Session refresh fix (#1482) first."
+    },
+    {
+      "id": "e21",
+      "title": "Launch prep",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-13T09:00",
+      "end": "2026-03-13T12:00",
+      "location": "Room Orion",
+      "attendees": [
+        "Engineering team",
+        "Priya Raman"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e22",
+      "title": "Team demo",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-13T16:00",
+      "end": "2026-03-13T17:00",
+      "location": "All-hands room",
+      "attendees": [
+        "Everyone"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e23",
+      "title": "Farmers market",
+      "calendar": "personal",
+      "allDay": false,
+      "start": "2026-03-14T10:00",
+      "end": "2026-03-14T11:30",
+      "location": "Riverside Park",
+      "attendees": [],
+      "description": ""
+    },
+    {
+      "id": "e24",
+      "title": "Mom's birthday",
+      "calendar": "personal",
+      "allDay": true,
+      "start": "2026-03-15",
+      "end": "2026-03-15",
+      "location": "",
+      "attendees": [],
+      "description": "Call in the morning!"
+    },
+    {
+      "id": "e25",
+      "title": "Offsite planning",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-16T10:00",
+      "end": "2026-03-16T12:00",
+      "location": "Room Atlas",
+      "attendees": [
+        "Priya Raman",
+        "Ada Park"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e26",
+      "title": "St. Patrick's Day",
+      "calendar": "holidays",
+      "allDay": true,
+      "start": "2026-03-17",
+      "end": "2026-03-17",
+      "location": "",
+      "attendees": [],
+      "description": ""
+    },
+    {
+      "id": "e27",
+      "title": "Gym",
+      "calendar": "personal",
+      "allDay": false,
+      "start": "2026-03-17T18:00",
+      "end": "2026-03-17T19:00",
+      "location": "Northside Climbing",
+      "attendees": [],
+      "description": ""
+    },
+    {
+      "id": "e28",
+      "title": "Board meeting",
+      "calendar": "work",
+      "allDay": false,
+      "start": "2026-03-03T14:00",
+      "end": "2026-03-03T16:00",
+      "location": "HQ boardroom",
+      "attendees": [
+        "Leadership"
+      ],
+      "description": ""
+    },
+    {
+      "id": "e29",
+      "title": "Q2 offsite (day 1)",
+      "calendar": "work",
+      "allDay": true,
+      "start": "2026-03-26",
+      "end": "2026-03-26",
+      "location": "Lakeside Lodge",
+      "attendees": [],
+      "description": ""
+    },
+    {
+      "id": "e30",
+      "title": "Q2 offsite (day 2)",
+      "calendar": "work",
+      "allDay": true,
+      "start": "2026-03-27",
+      "end": "2026-03-27",
+      "location": "Lakeside Lodge",
+      "attendees": [],
+      "description": ""
+    },
+    {
+      "id": "e31",
+      "title": "Dentist check-up",
+      "calendar": "personal",
+      "allDay": false,
+      "start": "2026-03-31T08:30",
+      "end": "2026-03-31T09:30",
+      "location": "Dr. Alvarez",
+      "attendees": [],
+      "description": ""
+    }
+  ]
+}

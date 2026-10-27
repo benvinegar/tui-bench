@@ -1,0 +1,321 @@
+{
+  "workspace": "Northwind",
+  "me": "ada",
+  "now": "2026-03-12T14:30:00Z",
+  "users": {
+    "ada": {
+      "name": "Ada Park",
+      "title": "Engineering lead",
+      "status": "online"
+    },
+    "priya": {
+      "name": "Priya Raman",
+      "title": "Head of Product",
+      "status": "online"
+    },
+    "tom": {
+      "name": "Tom Okafor",
+      "title": "Backend engineer",
+      "status": "away"
+    },
+    "lena": {
+      "name": "Lena Fischer",
+      "title": "Designer (Acme Design)",
+      "status": "online"
+    },
+    "sam": {
+      "name": "Sam Lee",
+      "title": "Support",
+      "status": "offline"
+    },
+    "deploybot": {
+      "name": "deploybot",
+      "title": "Bot",
+      "status": "online",
+      "bot": true
+    }
+  },
+  "channels": [
+    {
+      "id": "general",
+      "name": "general",
+      "topic": "Company-wide announcements and questions",
+      "lastRead": "2026-03-12T11:00:00Z",
+      "messages": [
+        {
+          "id": "g1",
+          "author": "priya",
+          "ts": "2026-03-12T09:02:00Z",
+          "text": "Good morning! Reminder that the Q2 offsite agenda draft is in your inbox. Comments welcome until Friday.",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "g2",
+          "author": "tom",
+          "ts": "2026-03-12T09:15:00Z",
+          "text": "Thanks Priya. Can we add 30 minutes for the infra roadmap?",
+          "reactions": [
+            {
+              "emoji": "👍",
+              "users": [
+                "priya",
+                "ada"
+              ]
+            }
+          ],
+          "replies": []
+        },
+        {
+          "id": "g3",
+          "author": "priya",
+          "ts": "2026-03-12T09:16:00Z",
+          "text": "Yes, added it after lunch on day 1.",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "g4",
+          "author": "sam",
+          "ts": "2026-03-12T10:40:00Z",
+          "text": "Heads up: the help center will be read-only from 18:00 to 19:00 tonight for the migration.",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "g5",
+          "author": "deploybot",
+          "ts": "2026-03-12T11:32:00Z",
+          "text": "✅ api v1.48.2 deployed to production (12 commits, by tom)",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "g6",
+          "author": "lena",
+          "ts": "2026-03-12T12:05:00Z",
+          "text": "Round 2 of the dashboard redesign is up in Figma. Feedback in #design please!",
+          "reactions": [
+            {
+              "emoji": "🎉",
+              "users": [
+                "priya",
+                "tom",
+                "sam"
+              ]
+            }
+          ],
+          "replies": []
+        },
+        {
+          "id": "g7",
+          "author": "tom",
+          "ts": "2026-03-12T13:47:00Z",
+          "text": "Who's in for ramen on Thursday? 12:30 at the new place on 5th.",
+          "reactions": [],
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "name": "design",
+      "topic": "Dashboard redesign, round 2: feedback by Monday",
+      "lastRead": "2026-03-12T08:00:00Z",
+      "messages": [
+        {
+          "id": "d1",
+          "author": "lena",
+          "ts": "2026-03-12T09:30:00Z",
+          "text": "Uploaded round 2: collapsible sidebar, new color scale, empty states with illustrations.",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "d2",
+          "author": "priya",
+          "ts": "2026-03-12T10:02:00Z",
+          "text": "Love the empty states. The sidebar icons feel a bit small though.",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "d3",
+          "author": "lena",
+          "ts": "2026-03-12T10:05:00Z",
+          "text": "Good point, I'll try 20px instead of 16px.",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "d4",
+          "author": "ada",
+          "ts": "2026-03-12T11:48:00Z",
+          "text": "Can we check the new color scale against deuteranopia? Some of the greens and oranges look close.",
+          "reactions": [
+            {
+              "emoji": "👀",
+              "users": [
+                "lena"
+              ]
+            }
+          ],
+          "replies": [
+            {
+              "id": "d4r1",
+              "author": "lena",
+              "ts": "2026-03-12T11:55:00Z",
+              "text": "Ran it through the simulator: green and orange are too close in the area chart.",
+              "reactions": [],
+              "replies": []
+            },
+            {
+              "id": "d4r2",
+              "author": "lena",
+              "ts": "2026-03-12T12:01:00Z",
+              "text": "Switching orange to a magenta. Updated frames are on page 3.",
+              "reactions": [],
+              "replies": []
+            },
+            {
+              "id": "d4r3",
+              "author": "priya",
+              "ts": "2026-03-12T12:10:00Z",
+              "text": "Much better, thanks both!",
+              "reactions": [],
+              "replies": []
+            }
+          ]
+        },
+        {
+          "id": "d5",
+          "author": "tom",
+          "ts": "2026-03-12T13:20:00Z",
+          "text": "Does the new KPI row need any new API fields? Happy to add them this sprint.",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "d6",
+          "author": "lena",
+          "ts": "2026-03-12T14:02:00Z",
+          "text": "Just two: previous-period value and trend direction. I'll write it up.",
+          "reactions": [],
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "eng-backend",
+      "name": "eng-backend",
+      "topic": "API, data and infrastructure",
+      "lastRead": "2026-03-12T14:00:00Z",
+      "messages": [
+        {
+          "id": "e1",
+          "author": "tom",
+          "ts": "2026-03-12T12:41:00Z",
+          "text": "PR for the session refresh race is up: #1482. Ada, could you review?",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "e2",
+          "author": "ada",
+          "ts": "2026-03-12T12:58:00Z",
+          "text": "On it after lunch.",
+          "reactions": [],
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "random",
+      "name": "random",
+      "topic": "Non-work banter",
+      "lastRead": "2026-03-11T18:00:00Z",
+      "messages": [
+        {
+          "id": "r1",
+          "author": "sam",
+          "ts": "2026-03-12T08:12:00Z",
+          "text": "Photos from Sunday's hike are in the shared album 🏔️",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "r2",
+          "author": "tom",
+          "ts": "2026-03-12T08:30:00Z",
+          "text": "That ridge shot is great.",
+          "reactions": [],
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "releases",
+      "name": "releases",
+      "topic": "Release coordination for 2.0",
+      "lastRead": "2026-03-12T14:30:00Z",
+      "messages": [
+        {
+          "id": "x1",
+          "author": "priya",
+          "ts": "2026-03-12T08:00:00Z",
+          "text": "2.0 launch is Friday 09:00 PT. Checklist is pinned.",
+          "reactions": [],
+          "replies": []
+        }
+      ]
+    }
+  ],
+  "dms": [
+    {
+      "id": "dm-priya",
+      "user": "priya",
+      "lastRead": "2026-03-12T13:00:00Z",
+      "messages": [
+        {
+          "id": "p1",
+          "author": "priya",
+          "ts": "2026-03-12T13:40:00Z",
+          "text": "Can you take the roadmap session at the offsite?",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "p2",
+          "author": "priya",
+          "ts": "2026-03-12T13:41:00Z",
+          "text": "No rush, Friday is fine.",
+          "reactions": [],
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "dm-tom",
+      "user": "tom",
+      "lastRead": "2026-03-12T14:30:00Z",
+      "messages": [
+        {
+          "id": "t1",
+          "author": "tom",
+          "ts": "2026-03-12T09:31:00Z",
+          "text": "Lunch Thursday?",
+          "reactions": [],
+          "replies": []
+        },
+        {
+          "id": "t2",
+          "author": "ada",
+          "ts": "2026-03-12T09:40:00Z",
+          "text": "Yes! 12:30 works.",
+          "reactions": [],
+          "replies": []
+        }
+      ]
+    }
+  ]
+}

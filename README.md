@@ -133,6 +133,18 @@ resize and checkpoint markers) and `capture/capture.json` (started / crashed / c
 | `kanban` | multi-column layout, cards, moving items, modal, text input |
 | `signup-form` | focus management, text inputs, masked password, radio/checkbox, validation, confirmation screen |
 
+Desktop-style apps, several of them driven by the mouse:
+
+| Task | Exercises |
+|---|---|
+| `draw-editor` | termDRAW-like diagram editor: drag to draw boxes, arrows and pen strokes, place text, select/move/recolor, undo |
+| `text-editor` | menu bar, click-to-place cursor, shift selection, clipboard, find bar, wheel scrolling, unsaved-changes dialog |
+| `spreadsheet` | formula bar, live recalculation, click and drag-select ranges, selection stats, relative copy/paste |
+| `mail-client` | three panes, unread/star state, compose window, reply quoting, archive with undo, search |
+| `chat-client` | Slack-style sidebar, unread dividers, grouped messages, emoji reactions, thread pane, quick switcher |
+| `calendar` | week view with side-by-side overlapping events, all-day band, mini month, popover, month view, event form |
+| `desktop-windows` | Turbo Vision-style overlapping windows: raise, move, resize, maximize and close with the mouse; taskbar |
+
 Each task also checks resize handling and a clean quit.
 
 ### Adding a task
@@ -140,7 +152,13 @@ Each task also checks resize handling and a clean quit.
 Create `tasks/<id>/task.yaml` (`id`, `title`, `summary`, `size`, `prompt`, `scenario`) and optionally
 `tasks/<id>/data/`, which is copied into the workspace as `data/`. Write the spec so the scenario is deterministic:
 define exact key bindings and initial state, and avoid randomness and wall-clock content. `npm test` validates every
-task. `scripts/gen_fixtures.py` regenerates the synthetic log and metrics fixtures.
+task, and `npx tsx scripts/check-tasks.ts [task]` prints each checkpoint with the input that leads to it and flags
+mouse coordinates outside the terminal. `scripts/gen_fixtures.py` regenerates the synthetic fixtures (log, metrics,
+mailbox, chat, calendar).
+
+For mouse-driven tasks, pin down the geometry of whatever the scenario clicks or drags on (canvas origin, gutter
+width, grid columns, initial window positions, button cells) and leave everything else to the model, so that the
+same scripted input hits the same target in every app.
 
 ### Adding a stack
 

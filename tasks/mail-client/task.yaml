@@ -1,0 +1,78 @@
+id: mail-client
+title: Mail client
+summary: An Outlook/Thunderbird-style three-pane mail client with folders, a message list, a reading pane, a compose window, archiving with undo, and search.
+size: { cols: 120, rows: 34 }
+tags: [three-pane, list, reader, compose, modal, desktop]
+prompt: |
+  Build a desktop-style email client (think Outlook or Thunderbird) for the mailbox in `data/mailbox.json`.
+  Nothing is actually sent; everything happens in memory.
+
+  ## Data
+  - `account`: the user (`name`, `email`). `now`: the current time to use for "today" and for new messages.
+  - `folders`: Inbox, Starred, Sent, Drafts, Archive, Trash. Starred is a virtual folder of all starred messages
+    outside Trash.
+  - `messages`: `id`, `folder`, `from` and `to` (`name`, `email`), `date` (ISO), `subject`, `body` (plain text,
+    with `>`-quoted lines), `read`, `starred`, `attachments` (`name`, `size` in bytes).
+
+  ## Layout
+  - **Left: folders**, each with its unread count when non-zero, the current folder highlighted.
+  - **Middle: message list** for the current folder, newest first. Each row shows the sender (recipient in
+    Sent/Drafts), subject, a short preview of the body, and the date: the time for today (`13:58`), `Yesterday`,
+    or `Mar 9`. Unread messages are bold with an unread marker; starred and attachment markers are shown.
+  - **Right: reading pane** showing the selected message: subject, from, to, full date, attachments with
+    human-readable sizes (`4.6 MB`), and the body wrapped to the pane width with quoted lines styled differently.
+    Selecting a message marks it read.
+  - A **status/footer bar** with the key hints that apply right now.
+  - Make it feel like a polished desktop mail app, and adapt the layout to the terminal size (for example, hide
+    the folder pane or stack panes when narrow).
+
+  ## Keys
+  | Key | Action |
+  |---|---|
+  | `j` / `↓`, `k` / `↑` | Select the next / previous message. The first message is selected when a folder opens. |
+  | `space` / `shift+space` | Scroll the reading pane |
+  | `1`–`6` | Open the folders in the order listed |
+  | `s` | Toggle star on the selected message |
+  | `e` | Archive the selected message. The next message gets selected and a toast says it was archived, with `u` to undo. |
+  | `#` | Move the selected message to Trash |
+  | `u` | Undo the last archive or delete |
+  | `c` | Compose a new message |
+  | `r` | Reply: compose to the sender, subject prefixed with `Re: ` (not doubled), body starting with an empty line followed by `On <date>, <name> wrote:` and the original body quoted with `> ` |
+  | `/` | Search: an input that filters the current folder by sender, subject or body as you type (case-insensitive); `enter` keeps the filter and returns to the list, `esc` clears it |
+  | `q` | Quit (not while composing or searching) |
+
+  ## Compose window
+  A centered modal window over the app with fields To, Subject and a multi-line body, the focused field clearly
+  indicated. `tab` / `shift+tab` move between fields; in the body `enter` inserts a new line. For a new message,
+  focus starts in To; for a reply, it starts at the top of the body. `ctrl+s` sends: the message is added to Sent
+  dated `now`, the window closes and a toast says "Message sent". `esc` asks "Discard this draft?" (`y` / `n`).
+scenario:
+  - snapshot: initial
+    note: Inbox selected with its unread count; the newest message (Priya, starred, unread) is selected and shown in the reading pane.
+  - press: j j
+  - snapshot: reading
+    note: 'Lena''s "Re: Dashboard redesign - round 2" is shown with its two attachments (4.6 MB and 178 KB) and the quoted text styled differently.'
+  - press: r
+  - type: Monday at 15:00 works for me. See you then!
+  - snapshot: reply
+    note: 'A compose window: To Lena, subject "Re: Dashboard redesign - round 2" (no double Re:), the typed reply above the quoted original.'
+  - press: ctrl+s
+  - snapshot: sent-toast
+    note: The compose window closed and a "Message sent" toast is visible.
+  - press: s e
+  - snapshot: archived
+    note: Lena's message was starred and archived; the invoice email is now selected and a toast offers undo.
+  - press: "3"
+  - snapshot: sent-folder
+    note: The Sent folder lists the reply at the top, dated 14:30 today.
+  - press: ["1", "/"]
+  - type: invoice
+  - press: enter
+  - snapshot: search
+    note: The Inbox is filtered to the two invoice emails (Cloudnine Billing and Marco Bellini), with the filter shown.
+  - press: esc
+  - resize: { cols: 90, rows: 28 }
+  - snapshot: resized
+    note: At 90x28 the layout adapts and stays readable.
+  - press: q
+  - expectExit: 3000

@@ -1,0 +1,80 @@
+id: spreadsheet
+title: Spreadsheet
+summary: A small Excel/VisiCalc-style spreadsheet with a formula bar, live recalculation, mouse cell and range selection, relative copy/paste and selection stats.
+size: { cols: 110, rows: 30 }
+tags: [grid, formulas, mouse, drag, editing, desktop]
+prompt: |
+  Build a small spreadsheet application in the spirit of Excel or VisiCalc, opening `data/budget.csv`.
+
+  ## Data
+  The CSV holds values and formulas (cells starting with `=`). Load it into columns A–F, rows 1–7. The sheet has
+  at least columns A–H and rows 1–30; empty cells are blank.
+
+  ## Formulas
+  Support numbers, cell references (`B2`), absolute rows/columns with `$` (`E$8`), the operators `+ - * /` with
+  normal precedence and parentheses, and `SUM`, `AVERAGE`, `MIN`, `MAX` and `COUNT` over ranges (`B2:D2`) or lists.
+  Formulas recalculate whenever any cell changes. Errors show as `#DIV/0!`, `#REF!` or `#ERR` in the cell,
+  and circular references as `#CYCLE`.
+
+  ## Layout (fixed geometry, so scripted mouse input lands on known cells)
+  - **Row 0**: a title bar with the file name.
+  - **Row 1**: the formula bar, showing the selected cell's address (or range, e.g. `B2:D4`) and its raw content
+    (the formula itself, not its value).
+  - **Row 2**: column headers `A`, `B`, `C`, … centered over their columns.
+  - **Grid**: row numbers in columns 0–4. Column A occupies screen columns 5–16, B 17–28, C 29–40, D 41–52,
+    E 53–64, F 65–76 and so on (12 columns each, including any separator). Sheet row 1 is screen row 3, row 2 is
+    screen row 4, and so on. Text is left-aligned; numbers are right-aligned with thousands separators and two
+    decimals (`2,400.00`). The `Share` column shows percentages (e.g. `12.5%`). Too-long text is cut off at the cell edge.
+  - **Last row: status bar** with the mode (`READY` or `EDIT`) and, for a multi-cell selection, its `Sum`,
+    `Average` and `Count` of numeric cells.
+  - The selected cell and range are clearly highlighted, along with their row number and column letter.
+
+  The app must enable mouse reporting with button-motion tracking, so it receives drags.
+
+  ## Keys and mouse
+  | Input | Action |
+  |---|---|
+  | arrows, `tab` / `shift+tab` | Move the selection |
+  | typing a printable character | Start editing the cell, replacing its content |
+  | `enter` / `F2` | Start editing the cell with its current content; while editing, `enter` commits and moves down, `tab` commits and moves right, `esc` cancels |
+  | `delete` / `backspace` | Clear the selected cells (when not editing) |
+  | `ctrl+c`, `ctrl+v` | Copy and paste the selected cell. A pasted formula has its relative references shifted, as in Excel (`=AVERAGE(B2:B7)` copied from B10 to D10 becomes `=AVERAGE(D2:D7)`); `$`-anchored parts stay fixed. |
+  | `ctrl+z` | Undo the last change |
+  | click | Select the clicked cell |
+  | drag | Select the rectangular range from the press cell to the release cell |
+  | wheel | Scroll rows |
+  | `ctrl+q` | Quit |
+
+  The layout must adapt to the terminal size (show as many columns and rows as fit) and redraw correctly when the
+  terminal is resized.
+scenario:
+  - snapshot: initial
+    note: The budget sheet with computed totals and shares; A1 selected; the formula bar shows A1 "Category".
+  - click: { x: 58, y: 4 }
+  - snapshot: formula-bar
+    note: E2 is selected; the cell shows 7,200.00 and the formula bar shows =SUM(B2:D2).
+  - click: { x: 34, y: 5 }
+  - type: "1500"
+  - snapshot: editing
+    note: C3 is being edited (EDIT mode) with 1500 typed.
+  - press: enter
+  - snapshot: recalculated
+    note: C3 is 1,500.00 and the Groceries total, column C total, grand total and all shares recalculated; C4 is now selected.
+  - drag: { from: { x: 22, y: 4 }, to: { x: 46, y: 6 } }
+  - snapshot: range
+    note: The range B2:D4 is highlighted, the formula bar shows B2:D4, and the status bar shows its Sum (10,525.90), Average and Count (9).
+  - click: { x: 10, y: 12 }
+  - type: Average
+  - press: tab
+  - type: =AVERAGE(B2:B7)
+  - press: enter
+  - snapshot: new-formula
+    note: A10 says Average and B10 shows 722.58, the average of B2:B7.
+  - press: up ctrl+c right right ctrl+v
+  - snapshot: relative-paste
+    note: D10 now holds =AVERAGE(D2:D7) (shown in the formula bar) and displays 757.38.
+  - resize: { cols: 80, rows: 24 }
+  - snapshot: resized
+    note: At 80x24 the grid shows fewer columns but the formula bar and status bar still fit.
+  - press: ctrl+q
+  - expectExit: 3000

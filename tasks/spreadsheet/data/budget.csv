@@ -1,0 +1,8 @@
+Category,Jan,Feb,Mar,Total,Share
+Rent,2400,2400,2400,=SUM(B2:D2),=E2/E$8
+Groceries,620.5,580.25,710,=SUM(B3:D3),=E3/E$8
+Utilities,180,165.4,150,=SUM(B4:D4),=E4/E$8
+Transport,95,120,88.75,=SUM(B5:D5),=E5/E$8
+Dining out,240,310,195.5,=SUM(B6:D6),=E6/E$8
+Savings,800,800,1000,=SUM(B7:D7),=E7/E$8
+Total,=SUM(B2:B7),=SUM(C2:C7),=SUM(D2:D7),=SUM(E2:E7),=SUM(F2:F7)

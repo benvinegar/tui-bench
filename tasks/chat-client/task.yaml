@@ -1,0 +1,78 @@
+id: chat-client
+title: Team chat
+summary: A Slack-style chat client with a channel sidebar, unread state, grouped messages, reactions, a thread pane and a quick switcher.
+size: { cols: 120, rows: 34 }
+tags: [sidebar, messages, threads, modal, emoji, desktop]
+prompt: |
+  Build a desktop-style team chat client in the spirit of Slack, for the workspace in `data/chat.json`.
+  There is no network; new messages are only added in memory.
+
+  ## Data
+  - `workspace` name, `me` (your user id), and `now`, the timestamp to use for "today" and for new messages.
+  - `users`: by id, with `name`, `title`, `status` (`online`, `away`, `offline`) and `bot`.
+  - `channels` and `dms` (direct messages, each with one other `user`). Each has `messages` and a `lastRead`
+    timestamp: messages after it are unread. A message has `id`, `author`, `ts`, `text`, `reactions`
+    (`emoji` and the `users` who reacted) and `replies` (a thread, as messages).
+
+  ## Layout
+  - **Sidebar (left)**: the workspace name, then **Channels** (`# general`, …) and **Direct messages** (with a
+    presence dot from the user's status). Conversations with unread messages are bold with an unread count. The
+    current conversation is highlighted.
+  - **Conversation (center)**: a header with the channel name, topic and member or presence info; the messages;
+    and a composer at the bottom with a placeholder like `Message #general`.
+    - Consecutive messages by the same author within 5 minutes are grouped under one author line.
+    - Each author line shows a colored avatar block with initials (stable color per user), the name (bots marked
+      `BOT`) and the time (`09:15`).
+    - Reactions show under the message as chips with emoji and count; chips that include you are highlighted.
+    - Messages with replies show `N replies` with the time of the last reply.
+    - When a conversation is opened, a `New messages` divider is shown before its first unread message, and the
+      conversation is then marked read.
+    - The view shows the newest messages at the bottom.
+  - **Thread pane (right, when open)**: the root message, its replies and a reply composer.
+  - Emoji are wide characters; keep the layout aligned around them.
+
+  ## Keys
+  | Key | Action |
+  |---|---|
+  | typing / `backspace` | Edit the composer, which has focus by default |
+  | `enter` | Send: the message is appended as yours, timestamped `now`, and the composer clears. Empty messages are not sent. |
+  | `ctrl+k` | Open a centered quick switcher over the app: an input that filters channels and DMs by name as you type (fuzzy or substring), `↑`/`↓` to choose, `enter` to open, `esc` to close |
+  | `alt+↑` / `alt+↓` | Previous / next conversation in the sidebar |
+  | `esc` | From the composer: select the newest message instead (selection mode). In the thread pane: close it. |
+  | `↑` / `↓` (selection mode) | Select the previous / next message; the selection is clearly highlighted |
+  | `t` (selection mode) | Open the selected message's thread in the thread pane |
+  | `+` (selection mode) | Toggle your 👍 reaction on the selected message |
+  | `i` (selection mode) | Back to the composer |
+  | `ctrl+q` | Quit |
+
+  The layout must adapt to the terminal size (e.g. collapse the sidebar or close the thread pane when narrow) and
+  redraw correctly when the terminal is resized.
+scenario:
+  - snapshot: initial
+    note: '#general is open with a "New messages" divider before the 11:32 deploybot message; #design, #random and the DM with Priya are bold with unread counts.'
+  - type: Morning all! Shipping the 2.0 release today.
+  - press: enter
+  - snapshot: sent
+    note: Your message appears at the bottom under your name at 14:30, and the composer is empty again.
+  - press: ctrl+k
+  - type: des
+  - snapshot: quick-switcher
+    note: A quick switcher over the app, filtered by "des" with design selected.
+  - press: enter
+  - snapshot: design
+    note: '#design is open with its topic and a "New messages" divider before the first message; the 11:48 message shows "3 replies" and a 👀 reaction.'
+  - press: esc up up
+  - snapshot: selected
+    note: Ada's 11:48 message about deuteranopia is selected (two above the newest).
+  - press: t
+  - snapshot: thread
+    note: The thread pane shows that message and its three replies (Lena, Lena, Priya).
+  - press: +
+  - snapshot: reacted
+    note: The message now has a 👍 1 chip, highlighted as yours, next to 👀 1.
+  - press: esc
+  - resize: { cols: 90, rows: 28 }
+  - snapshot: resized
+    note: At 90x28 the layout adapts (the sidebar may collapse) and messages stay readable.
+  - press: ctrl+q
+  - expectExit: 3000

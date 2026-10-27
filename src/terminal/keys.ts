@@ -29,6 +29,16 @@ const NAMED: Record<string, string | ((appCursor: boolean) => string)> = {
   "ctrl+down": "\x1b[1;5B",
   "ctrl+right": "\x1b[1;5C",
   "ctrl+left": "\x1b[1;5D",
+  "shift+home": "\x1b[1;2H",
+  "shift+end": "\x1b[1;2F",
+  "ctrl+home": "\x1b[1;5H",
+  "ctrl+end": "\x1b[1;5F",
+  "shift+pageup": "\x1b[5;2~",
+  "shift+pagedown": "\x1b[6;2~",
+  "alt+up": "\x1b[1;3A",
+  "alt+down": "\x1b[1;3B",
+  "alt+right": "\x1b[1;3C",
+  "alt+left": "\x1b[1;3D",
   f1: "\x1bOP",
   f2: "\x1bOQ",
   f3: "\x1bOR",
@@ -77,4 +87,4 @@ export function splitKeys(keys: string | string[]): string[] {
 
 export const KEY_NAMES_HELP =
   "Single characters (j, G, /, ?), named keys (enter, tab, shift+tab, esc, backspace, space, up, down, left, right, " +
-  "home, end, pageup, pagedown, delete, f1-f12, shift+<arrow>, ctrl+<arrow>), and ctrl+<letter> / alt+<key> combos.";
+  "home, end, pageup, pagedown, delete, f1-f12, shift+/ctrl+/alt+<arrow>, shift+/ctrl+home/end), and ctrl+<letter> / alt+<key> combos.";

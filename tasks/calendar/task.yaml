@@ -1,0 +1,83 @@
+id: calendar
+title: Calendar
+summary: A Google Calendar-style week view with overlapping events, all-day events, a mini month, calendar toggles, an event popover, a month view and an event form.
+size: { cols: 120, rows: 36 }
+tags: [calendar, grid, layout, form, modal, desktop]
+prompt: |
+  Build a desktop-style calendar app in the spirit of Google Calendar or Fantastical, for `data/calendar.json`.
+
+  ## Data
+  - `now`: the current local date and time (`2026-03-12T14:30`, a Thursday). Never read the real clock.
+  - `weekStartsOn`: `monday`.
+  - `calendars`: `id`, `name`, `color`.
+  - `events`: `id`, `title`, `calendar`, `allDay`, `start` and `end` (local `YYYY-MM-DDTHH:MM`, or `YYYY-MM-DD`
+    for all-day events), `location`, `attendees`, `description`.
+
+  ## Week view (the default)
+  - A header with the month and year (`March 2026`), the week's date range, and the active view.
+  - A **sidebar** with a mini month calendar (today highlighted, the displayed week marked) and the list of
+    calendars with colored checkboxes showing which are visible.
+  - **Seven day columns**, Monday to Sunday, with day headers (`Mon 9`), today's column clearly highlighted.
+  - An **all-day band** under the headers for all-day events.
+  - **Hour rows**: two terminal rows per hour, labelled on the left (`09:00`). The view initially shows 08:00 at
+    the top; `j` / `k` scroll by an hour. A line marks the current time (`now`) in today's column.
+  - **Events** are blocks in their calendar's color covering their time span, with the title and start time
+    (truncated to fit). **Overlapping events split the column side by side.**
+
+  ## Keys
+  | Key | Action |
+  |---|---|
+  | `h` / `←`, `l` / `→` | Previous / next week (previous / next month in month view) |
+  | `t` | Back to the week (or month) containing `now` |
+  | `m` / `w` | Switch to month view / week view |
+  | `tab` / `shift+tab` | Select the next / previous event in the displayed range, in order of start time (a day's all-day events first). The selection is clearly highlighted. |
+  | `enter` | Open a popover for the selected event with its title, calendar, date and time, location, attendees and description; `esc` closes it |
+  | `1` / `2` / `3` | Show or hide the 1st, 2nd and 3rd calendar |
+  | `c` | Open the new-event form (below) |
+  | `q` | Quit (not while a form is open) |
+
+  ## Month view
+  A six-week grid of the month with day numbers, today highlighted, days outside the month dimmed, and each day's
+  events listed in their colors (`+2 more` when they don't fit).
+
+  ## New-event form
+  A centered modal with the fields Title, Date (`YYYY-MM-DD`), Start (`HH:MM`), End (`HH:MM`) and Calendar. The
+  text fields start empty and Calendar starts on Work; `←` / `→` change the calendar. `tab` / `shift+tab` move
+  between fields, `enter` saves, `esc` cancels. Invalid input (a bad date or time, or end before start) is shown
+  next to the field and the form stays open. After saving, the view shows the week of the new event.
+
+  The layout must adapt to the terminal size and redraw correctly when the terminal is resized.
+scenario:
+  - snapshot: initial
+    note: Week of Mon 9 to Sun 15 March with today (Thu 12) highlighted, the now line at 14:30, the side-by-side overlap on Wed (Hiring sync / Interview), and Mom's birthday in the all-day band on Sunday.
+  - press: tab tab enter
+  - snapshot: event-popover
+    note: The popover for "Design review" (Mon 9, 11:00 to 12:00, Room Atlas, three attendees, description).
+  - press: [esc, "2"]
+  - snapshot: personal-hidden
+    note: The Personal calendar is unchecked and its events (Gym, Dinner with Sam, Lunch with Tom, Farmers market, Mom's birthday) are gone.
+  - press: ["2", l]
+  - snapshot: next-week
+    note: Week of 16 to 22 March with St. Patrick's Day as an all-day holiday on Tuesday.
+  - press: t m
+  - snapshot: month
+    note: The March 2026 month view with today highlighted, the Board meeting on the 3rd and the Q2 offsite on the 26th and 27th.
+  - press: w c
+  - type: Dentist
+  - press: tab
+  - type: 2026-03-13
+  - press: tab
+  - type: "15:30"
+  - press: tab
+  - type: "16:30"
+  - press: tab right
+  - snapshot: new-event-form
+    note: 'The new-event form filled in: Dentist, 2026-03-13, 15:30 to 16:30, Calendar: Personal.'
+  - press: enter
+  - snapshot: event-created
+    note: Dentist appears on Friday 13 from 15:30 in Personal color, sharing the column side by side with Team demo where they overlap (16:00 to 16:30).
+  - resize: { cols: 90, rows: 30 }
+  - snapshot: resized
+    note: At 90x30 the week view still fits (the sidebar may hide) and stays readable.
+  - press: q
+  - expectExit: 3000

@@ -1,0 +1,94 @@
+id: draw-editor
+title: Diagram editor
+summary: A mouse-driven drawing editor in the spirit of termDRAW, with boxes, arrows, text, a pen, selection, moving, recoloring and undo.
+size: { cols: 110, rows: 34 }
+tags: [mouse, drag, canvas, selection, undo, desktop]
+prompt: |
+  Build a diagram and ASCII-art editor for the terminal, in the spirit of termDRAW: you draw boxes, arrows, text and
+  freehand strokes with the mouse, and every shape stays an object you can select, move, recolor and delete.
+
+  ## Layout (fixed, so scripted mouse input lands on the canvas)
+  - **Row 0: toolbar.** Shows every tool with its shortcut key (Select `v`, Box `b`, Arrow `a`, Text `t`, Pen `p`),
+    the active tool clearly highlighted, and the color palette (`1`–`6`) with the active color marked.
+  - **Rows 1 to height−2: the canvas**, spanning the full width with no border. The canvas is in screen coordinates:
+    the mouse at screen cell (x, y) is the canvas cell (x, y). It starts empty.
+  - **Last row: status bar.** Shows the active tool, the last mouse position on the canvas (e.g. `x 30 y 12`), the
+    number of objects, and, when an object is selected, its type and bounds (e.g. `Box 26×9 at 5,4`).
+
+  The app must enable mouse reporting with button-motion tracking, so it receives drags.
+
+  ## Tools
+  The active tool starts as Select. Tools are switched with their shortcut keys (or by clicking them in the toolbar).
+  - **Box (`b`)**: drag from one corner to the opposite corner. On release, a rectangle drawn with box-drawing
+    characters (`┌─┐│└┘`) occupies exactly the cells between the press and release cells, inclusive. While dragging,
+    show a live preview.
+  - **Arrow (`a`)**: drag from start to end. A straight line is drawn when the drag is horizontal or vertical;
+    otherwise an elbow connector (horizontal first, then vertical). The end cell gets an arrowhead (`▶ ◀ ▲ ▼`)
+    pointing in the direction of travel.
+  - **Text (`t`)**: click a cell to start a text object there with a visible cursor. Typed characters appear,
+    `backspace` deletes, and `enter` or `esc` finishes it. Empty text objects are discarded.
+  - **Pen (`p`)**: drag to paint `█` blocks on every cell the mouse passes through; one drag is one object.
+  - **Select (`v`)**: click any drawn cell of an object to select it; the topmost object wins. The selection is
+    clearly shown (e.g. highlighted bounds or corner handles). Dragging a selected object moves it by the drag
+    offset. Moving a box also moves the text objects that lie entirely inside it. Clicking empty canvas or `esc`
+    clears the selection, and `delete` or `backspace` deletes the selected object.
+
+  ## Other keys
+  | Key | Action |
+  |---|---|
+  | `1`–`6` | Choose the color for new objects: white, red, yellow, green, cyan, magenta. With an object selected, also recolor it. |
+  | `ctrl+z` / `ctrl+y` | Undo / redo every change (draw, move, recolor, delete) |
+  | `?` | Toggle a help overlay with all tools and keys |
+  | `ctrl+q` | Quit |
+
+  Outside text editing, other letters do nothing. Objects are drawn in creation order, so newer objects cover older ones.
+  If the terminal shrinks, keep all objects and show the part of the canvas that fits.
+scenario:
+  - snapshot: initial
+    note: An empty canvas with the toolbar (Select active) and the status bar.
+  - press: b
+  - drag: { from: { x: 5, y: 4 }, to: { x: 30, y: 12 } }
+  - drag: { from: { x: 45, y: 6 }, to: { x: 70, y: 14 } }
+  - snapshot: two-boxes
+    note: Two boxes whose corners sit exactly on the marked drag start and end cells; Box is the active tool.
+  - press: a
+  - drag: { from: { x: 31, y: 9 }, to: { x: 44, y: 9 } }
+  - snapshot: arrow
+    note: A horizontal arrow from the first box to the second, with ▶ on cell (44,9).
+  - press: t
+  - click: { x: 8, y: 6 }
+  - type: API server
+  - press: esc
+  - click: { x: 48, y: 9 }
+  - type: Database
+  - press: esc
+  - snapshot: labels
+    note: '"API server" inside the first box and "Database" inside the second, each starting at the clicked cell.'
+  - press: [p, "4"]
+  - drag: { from: { x: 10, y: 20 }, to: { x: 40, y: 26 } }
+  - snapshot: pen-stroke
+    note: A green freehand stroke along the marked drag path.
+  - press: v
+  - click: { x: 17, y: 4 }
+  - press: "2"
+  - snapshot: selected-recolored
+    note: The first box is selected (clearly indicated, bounds in the status bar) and now red.
+  - drag: { from: { x: 17, y: 4 }, to: { x: 17, y: 16 } }
+  - snapshot: moved
+    note: The first box and its "API server" label moved down 12 rows together; the arrow stayed where it was.
+  - press: ctrl+z
+  - snapshot: undone
+    note: Undo put the box and its label back at their original position (still red).
+  - click: { x: 37, y: 9 }
+  - press: delete
+  - snapshot: deleted
+    note: The arrow was selected and deleted; both boxes and labels remain.
+  - press: "?"
+  - snapshot: help
+    note: The help overlay lists all tools and keys.
+  - press: "?"
+  - resize: { cols: 90, rows: 28 }
+  - snapshot: resized
+    note: After shrinking to 90x28, the toolbar and status bar still fit and the drawing is intact where it fits.
+  - press: ctrl+q
+  - expectExit: 3000
