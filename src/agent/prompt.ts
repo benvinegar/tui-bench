@@ -22,8 +22,9 @@ input and get plain-text screenshots back (colors and styles are not shown):
 
     tuibench preview . --task ${task.id} --stack ${stack.id} --steps '[{press: "j j enter"}, {snapshot: after}, {type: "hi"}, {resize: {cols: 80, rows: 24}}]'
 
-Steps: {press: "<keys>"}, {type: "<text>"}, {wait: <ms>}, {resize: {cols, rows}}, {snapshot: <name>}. A screenshot is
-always taken at the end. Key names: ${KEY_NAMES_HELP}`;
+Steps: {press: "<keys>"}, {type: "<text>"}, {wait: <ms>}, {resize: {cols, rows}}, {snapshot: <name>}, and mouse input
+with 0-based cells: {click: {x, y, button?, count?}}, {drag: {from: {x, y}, to: {x, y}}}, {scroll: {x, y, direction}},
+{hover: {x, y}}. Mouse input only reaches the app if it enabled mouse reporting. A screenshot is always taken at the end. Key names: ${KEY_NAMES_HELP}`;
 
   return `You are building a terminal user interface (TUI) application. Your work is part of a benchmark: after you finish,
 the app is built from the workspace, launched in a ${task.size.cols}x${task.size.rows} terminal (xterm-256color, truecolor), driven

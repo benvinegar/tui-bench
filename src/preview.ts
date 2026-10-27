@@ -25,6 +25,7 @@ export async function previewApp(
     { startupTimeoutMs: 15000 },
   );
   const parts = r.snapshots.map((s) => `[${s.name}] ${s.cols}x${s.rows}\n${snapshotToText(s)}`);
+  if (r.warnings.length) parts.push(`Warnings:\n${r.warnings.map((w) => `- ${w}`).join("\n")}`);
   if (r.crashed || r.error) parts.push(`App problem: ${r.error ?? "crashed"}`);
   if (r.crashed && r.exit) {
     parts.push(`App exited on its own with code ${r.exit.code} after ${r.exit.at}ms.`);

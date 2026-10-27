@@ -94,11 +94,18 @@ scenario:
   - type: Water the plants       # text, one character at a time
   - resize: { cols: 70, rows: 20 }
   - wait: 500
-  - click: { x: 10, y: 3 }       # SGR mouse click (0-based cells)
+  - click: { x: 10, y: 3 }       # mouse, 0-based cells; also button: right, count: 2, mods: [shift]
+  - drag: { from: { x: 5, y: 6 }, to: { x: 30, y: 12 } }
+  - scroll: { x: 40, y: 10, direction: down, amount: 3 }
+  - hover: { x: 12, y: 4 }       # only reaches apps that enabled all-motion tracking
   - paste: "some text"           # bracketed paste when the app enabled it
   - press: q
   - expectExit: 3000             # must exit with status 0 and leave the alternate screen
 ```
+
+Mouse input goes through xterm.js's own encoder, so an app receives exactly what a real xterm would send:
+nothing unless it enabled mouse reporting, motion only in the tracking modes that report it, and the protocol
+it asked for. Undelivered input is recorded as a warning in `capture.json`.
 
 Each capture writes `capture/snapshots.json` (styled cell runs), `capture/recording.cast` (asciicast v2 with input,
 resize and checkpoint markers) and `capture/capture.json` (started / crashed / clean exit).

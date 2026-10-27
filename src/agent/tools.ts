@@ -139,7 +139,9 @@ export function makeTools(ctx: ToolContext): ToolSpec[] {
       description:
         "Build the app, run it in a pseudo-terminal, perform the given steps and return plain-text screenshots. " +
         "Steps: {press: 'j j enter'} or {press: ['ctrl+c']}, {type: 'text'}, {wait: ms}, {resize: {cols, rows}}, " +
-        "{snapshot: 'name'}. A screenshot is always taken at the end. The app is killed afterwards.",
+        "{snapshot: 'name'}, and mouse input with 0-based cells: {click: {x, y, button?, count?}}, " +
+        "{drag: {from: {x, y}, to: {x, y}}}, {scroll: {x, y, direction: 'up'|'down'}}, {hover: {x, y}}. " +
+        "Mouse input only reaches the app if it enabled mouse reporting. A screenshot is always taken at the end. The app is killed afterwards.",
       schema: z
         .object({
           steps: z.array(Step).describe("Interaction steps; each is an object with exactly one action key"),

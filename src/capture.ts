@@ -26,6 +26,7 @@ export async function capture(entry: Entry, log?: (s: string) => void): Promise<
       crashed: false,
       exit: null,
       cleanExit: null,
+      warnings: [],
       durationMs: build.durationMs,
       error: "build failed",
       snapshotCount: 0,
