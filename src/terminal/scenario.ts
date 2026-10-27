@@ -58,6 +58,7 @@ export async function runScenario(
   const snapshots: Snapshot[] = [];
   const notes: Record<string, string> = {};
   let cleanExit: boolean | null = null;
+  let warned = 0;
   let error: string | undefined;
 
   try {
@@ -77,7 +78,11 @@ export async function runScenario(
       else if ("resize" in step) s.resize(step.resize.cols, step.resize.rows);
       else if ("snapshot" in step) {
         await s.waitIdle(step.quiet ?? 250, step.maxWait ?? 1500);
-        snapshots.push(s.snapshot(step.snapshot));
+        const snap = s.snapshot(step.snapshot);
+        const fresh = s.warnings.slice(warned);
+        warned = s.warnings.length;
+        if (fresh.length) snap.inputWarnings = [...new Set(fresh)];
+        snapshots.push(snap);
         if (step.note) notes[step.snapshot] = step.note;
       } else if ("expectExit" in step) {
         const exited = await s.waitForExit(step.expectExit);

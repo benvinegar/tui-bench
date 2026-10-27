@@ -25,6 +25,8 @@ export interface Snapshot {
   lines: Run[][];
   /** Plain text rendering, one string per row (trailing spaces trimmed). */
   text: string[];
+  /** Input since the previous snapshot that never reached the app (e.g. mouse with reporting off). */
+  inputWarnings?: string[];
 }
 
 const ANSI16 = [
