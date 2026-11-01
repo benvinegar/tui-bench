@@ -50,19 +50,39 @@ prompt: |
 scenario:
   - snapshot: initial
     note: The budget sheet with computed totals and shares; A1 selected; the formula bar shows A1 "Category".
+    expect:
+      - { contains: Category, in: { rows: [1, 1] }, label: "formula bar shows A1" }
+      - { contains: "2,400.00" }
+      - { contains: "7,200.00" }
+      - { at: { x: 5, y: 3 }, text: Category, label: "A1 at screen (5,3)" }
   - click: { x: 58, y: 4 }
   - snapshot: formula-bar
     note: E2 is selected; the cell shows 7,200.00 and the formula bar shows =SUM(B2:D2).
+    expect:
+      - { contains: "=SUM(B2:D2)", in: { rows: [1, 1] } }
+      - { contains: E2, in: { rows: [1, 1] } }
   - click: { x: 34, y: 5 }
   - type: "1500"
   - snapshot: editing
     note: C3 is being edited (EDIT mode) with 1500 typed.
+    expect:
+      - { contains: "1500" }
+      - { contains: EDIT, in: { rows: [-1, -1] } }
   - press: enter
   - snapshot: recalculated
     note: C3 is 1,500.00 and the Groceries total, column C total, grand total and all shares recalculated; C4 is now selected.
+    expect:
+      - { contains: "1,500.00" }
+      - { contains: "2,830.50", label: "Groceries total" }
+      - { contains: "5,295.40", label: "Feb total" }
+      - { contains: "14,175.15", label: "grand total" }
+      - { contains: C4, in: { rows: [1, 1] } }
   - drag: { from: { x: 22, y: 4 }, to: { x: 46, y: 6 } }
   - snapshot: range
     note: The range B2:D4 is highlighted, the formula bar shows B2:D4, and the status bar shows its Sum (10,525.90), Average and Count (9).
+    expect:
+      - { contains: "B2:D4", in: { rows: [1, 1] } }
+      - { contains: "10,525.90", in: { rows: [-1, -1] }, label: "status bar sum" }
   - click: { x: 10, y: 12 }
   - type: Average
   - press: tab
@@ -70,11 +90,19 @@ scenario:
   - press: enter
   - snapshot: new-formula
     note: A10 says Average and B10 shows 722.58, the average of B2:B7.
+    expect:
+      - { at: { x: 5, y: 12 }, text: Average }
+      - { contains: "722.58" }
   - press: up ctrl+c right right ctrl+v
   - snapshot: relative-paste
     note: D10 now holds =AVERAGE(D2:D7) (shown in the formula bar) and displays 757.38.
+    expect:
+      - { contains: "=AVERAGE(D2:D7)", in: { rows: [1, 1] } }
+      - { contains: "757.38" }
   - resize: { cols: 80, rows: 24 }
   - snapshot: resized
     note: At 80x24 the grid shows fewer columns but the formula bar and status bar still fit.
+    expect:
+      - { contains: Category }
   - press: ctrl+q
   - expectExit: 3000

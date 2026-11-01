@@ -33,23 +33,40 @@ prompt: |
 scenario:
   - snapshot: initial
     note: The root's children are listed (assets, docs, src, Cargo.toml, README.md) with the first selected.
+    expect:
+      - { inOrder: [assets, docs, src, Cargo.toml, README.md], label: "folders first, then files, alphabetically" }
   - press: j j l
   - snapshot: expanded
     note: "src/ is expanded, showing ui/, config.rs and main.rs; src/ is selected and the preview summarises it."
+    expect:
+      - { inOrder: [src, config.rs, main.rs, Cargo.toml], label: "src expanded with its files inside" }
   - press: j j j
   - snapshot: file-preview
     note: src/main.rs is selected and its contents are previewed with line numbers.
+    expect:
+      - { contains: "weatherline: render a compact weather summary" }
+      - { contains: src/main.rs, label: "status bar shows the path" }
   - press: tab j j j j j j j j
   - snapshot: preview-scrolled
     note: The preview has focus (clearly indicated) and is scrolled down 8 lines.
+    expect:
+      - { contains: "struct Args" }
+      - { notContains: "weatherline: render a compact", label: "first lines scrolled out of view" }
   - press: tab h h
   - snapshot: collapsed
     note: Focus is back on the tree; src/ is selected and collapsed again.
+    expect:
+      - { notContains: config.rs, label: "src collapsed" }
   - press: k l j
   - snapshot: markdown
     note: docs/ is expanded and docs/architecture.md is previewed.
+    expect:
+      - { contains: architecture.md }
+      - { contains: "split into three small modules" }
   - resize: { cols: 80, rows: 24 }
   - snapshot: resized
     note: After resizing to 80x24 both panes still fit and stay readable.
+    expect:
+      - { contains: "split into three" }
   - press: q
   - expectExit: 3000

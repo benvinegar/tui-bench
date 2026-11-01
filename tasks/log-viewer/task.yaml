@@ -36,29 +36,46 @@ prompt: |
 scenario:
   - snapshot: initial
     note: The top of the file, first line selected, levels colored, header with per-level counts.
+    expect:
+      - { contains: "slow request /api/cart took 943ms", label: "first line shown" }
+      - { contains: app.log }
   - press: G
   - snapshot: bottom
     note: Jumped to the last line (420); the view is scrolled to the end.
+    expect:
+      - { contains: "order 74926 created", label: "last line shown" }
+      - { contains: "420" }
   - press: g
   - press: /
   - type: timeout
   - snapshot: search-prompt
     note: The search prompt is open with "timeout" typed in.
+    expect:
+      - { contains: timeout }
   - press: enter
   - snapshot: search-results
     note: Matches of "timeout" are highlighted; the selection is on the first matching line; the status bar shows 1/N.
+    expect:
+      - { matches: "1\\s*/\\s*21", label: "match 1 of 21" }
   - press: n n n
   - snapshot: next-match
     note: Three matches further on (4/N).
+    expect:
+      - { matches: "4\\s*/\\s*21", label: "match 4 of 21" }
   - press: esc
   - press: l l
   - snapshot: warn-filter
     note: Search cleared. Only WARN and ERROR lines are shown and the active filter is indicated.
+    expect:
+      - { notContains: "GET /api", label: "INFO lines hidden" }
+      - { contains: WARN }
   - press: ctrl+d
   - snapshot: half-page
     note: Moved down half a page within the filtered lines.
   - resize: { cols: 80, rows: 22 }
   - snapshot: resized
     note: After resizing to 80x22 lines are truncated cleanly and the status bar still fits.
+    expect:
+      - { contains: WARN }
   - press: q
   - expectExit: 3000

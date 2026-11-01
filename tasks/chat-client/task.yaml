@@ -50,29 +50,49 @@ prompt: |
 scenario:
   - snapshot: initial
     note: '#general is open with a "New messages" divider before the 11:32 deploybot message; #design, #random and the DM with Priya are bold with unread counts.'
+    expect:
+      - { contains: New messages }
+      - { inOrder: ["Reminder that the Q2 offsite", "Who's in for ramen"], label: "messages oldest to newest" }
   - type: Morning all! Shipping the 2.0 release today.
   - press: enter
   - snapshot: sent
     note: Your message appears at the bottom under your name at 14:30, and the composer is empty again.
+    expect:
+      - { contains: "Morning all! Shipping the 2.0 release today." }
+      - { contains: "14:30" }
   - press: ctrl+k
   - type: des
   - snapshot: quick-switcher
     note: A quick switcher over the app, filtered by "des" with design selected.
+    expect:
+      - { contains: design }
   - press: enter
   - snapshot: design
     note: '#design is open with its topic and a "New messages" divider before the first message; the 11:48 message shows "3 replies" and a 👀 reaction.'
+    expect:
+      - { contains: "Uploaded round 2" }
+      - { contains: 3 replies }
+      - { contains: New messages }
   - press: esc up up
   - snapshot: selected
     note: Ada's 11:48 message about deuteranopia is selected (two above the newest).
   - press: t
   - snapshot: thread
     note: The thread pane shows that message and its three replies (Lena, Lena, Priya).
+    expect:
+      - { contains: "Ran it through the simulator" }
+      - { contains: "Much better, thanks both!" }
   - press: +
   - snapshot: reacted
     note: The message now has a 👍 1 chip, highlighted as yours, next to 👀 1.
+    expect:
+      - { contains: "👍" }
+      - { contains: "👀" }
   - press: esc
   - resize: { cols: 90, rows: 28 }
   - snapshot: resized
     note: At 90x28 the layout adapts (the sidebar may collapse) and messages stay readable.
+    expect:
+      - { contains: deuteranopia }
   - press: ctrl+q
   - expectExit: 3000

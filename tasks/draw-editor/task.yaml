@@ -46,15 +46,24 @@ prompt: |
 scenario:
   - snapshot: initial
     note: An empty canvas with the toolbar (Select active) and the status bar.
+    expect:
+      - { inOrder: [Select, Box, Arrow, Text, Pen], in: { rows: [0, 0] }, label: "toolbar lists the five tools" }
   - press: b
   - drag: { from: { x: 5, y: 4 }, to: { x: 30, y: 12 } }
   - drag: { from: { x: 45, y: 6 }, to: { x: 70, y: 14 } }
   - snapshot: two-boxes
     note: Two boxes whose corners sit exactly on the marked drag start and end cells; Box is the active tool.
+    expect:
+      - { at: { x: 5, y: 4 }, oneOf: "┌╭┏╔" }
+      - { at: { x: 30, y: 12 }, oneOf: "┘╯┛╝" }
+      - { at: { x: 45, y: 6 }, oneOf: "┌╭┏╔" }
+      - { at: { x: 70, y: 14 }, oneOf: "┘╯┛╝" }
   - press: a
   - drag: { from: { x: 31, y: 9 }, to: { x: 44, y: 9 } }
   - snapshot: arrow
     note: A horizontal arrow from the first box to the second, with ▶ on cell (44,9).
+    expect:
+      - { at: { x: 44, y: 9 }, oneOf: "▶" }
   - press: t
   - click: { x: 8, y: 6 }
   - type: API server
@@ -64,31 +73,57 @@ scenario:
   - press: esc
   - snapshot: labels
     note: '"API server" inside the first box and "Database" inside the second, each starting at the clicked cell.'
+    expect:
+      - { at: { x: 8, y: 6 }, text: API server }
+      - { at: { x: 48, y: 9 }, text: Database }
   - press: [p, "4"]
   - drag: { from: { x: 10, y: 20 }, to: { x: 40, y: 26 } }
   - snapshot: pen-stroke
     note: A green freehand stroke along the marked drag path.
+    expect:
+      - { at: { x: 10, y: 20 }, oneOf: "█" }
+      - { at: { x: 40, y: 26 }, oneOf: "█" }
   - press: v
   - click: { x: 17, y: 4 }
   - press: "2"
   - snapshot: selected-recolored
     note: The first box is selected (clearly indicated, bounds in the status bar) and now red.
+    expect:
+      - { matches: "26\\s*[×x]\\s*9", in: { rows: [-1, -1] }, label: "status bar shows the box size 26×9" }
   - drag: { from: { x: 17, y: 4 }, to: { x: 17, y: 16 } }
   - snapshot: moved
     note: The first box and its "API server" label moved down 12 rows together; the arrow stayed where it was.
+    expect:
+      - { at: { x: 5, y: 16 }, oneOf: "┌╭┏╔", label: "box moved down 12 rows" }
+      - { at: { x: 8, y: 18 }, text: API server, label: "its label moved with it" }
+      - { at: { x: 44, y: 9 }, oneOf: "▶", label: "the arrow stayed" }
   - press: ctrl+z
   - snapshot: undone
     note: Undo put the box and its label back at their original position (still red).
+    expect:
+      - { at: { x: 5, y: 4 }, oneOf: "┌╭┏╔", label: "box back at (5,4)" }
+      - { at: { x: 8, y: 6 }, text: API server }
+      - { at: { x: 5, y: 16 }, notOneOf: "┌╭┏╔" }
   - click: { x: 37, y: 9 }
   - press: delete
   - snapshot: deleted
     note: The arrow was selected and deleted; both boxes and labels remain.
+    expect:
+      - { at: { x: 44, y: 9 }, notOneOf: "▶", label: "arrow deleted" }
+      - { at: { x: 45, y: 6 }, oneOf: "┌╭┏╔", label: "second box remains" }
+      - { at: { x: 8, y: 6 }, text: API server }
   - press: "?"
   - snapshot: help
     note: The help overlay lists all tools and keys.
+    expect:
+      - { contains: undo }
+      - { contains: redo }
   - press: "?"
   - resize: { cols: 90, rows: 28 }
   - snapshot: resized
     note: After shrinking to 90x28, the toolbar and status bar still fit and the drawing is intact where it fits.
+    expect:
+      - { at: { x: 5, y: 4 }, oneOf: "┌╭┏╔" }
+      - { at: { x: 48, y: 9 }, text: Database }
   - press: ctrl+q
   - expectExit: 3000

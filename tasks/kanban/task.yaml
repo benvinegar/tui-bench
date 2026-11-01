@@ -35,6 +35,13 @@ prompt: |
 scenario:
   - snapshot: initial
     note: Four columns; WEB-12 in Backlog is selected.
+    expect:
+      - { contains: Website relaunch }
+      - { contains: Backlog }
+      - { contains: In Progress }
+      - { contains: Review }
+      - { contains: Done }
+      - { contains: WEB-12 }
   - press: l j
   - snapshot: navigate
     note: WEB-9 in In Progress is selected.
@@ -44,16 +51,26 @@ scenario:
   - press: enter
   - snapshot: detail
     note: A modal shows all details of WEB-9, including the full description.
+    expect:
+      - { contains: "Convert the 140 legacy posts", label: "modal shows WEB-9 description" }
   - press: esc h h
   - press: n
   - type: Write release notes
   - snapshot: new-card-prompt
     note: The input prompt is open with "Write release notes" typed in.
+    expect:
+      - { contains: Write release notes }
   - press: enter
   - snapshot: new-card
     note: NEW-1 "Write release notes" is added at the end of the selected column and selected.
+    expect:
+      - { contains: NEW-1 }
+      - { contains: Write release notes }
   - resize: { cols: 80, rows: 24 }
   - snapshot: resized
     note: After resizing to 80x24 all four columns still fit and cards stay legible.
+    expect:
+      - { contains: WEB-12 }
+      - { contains: NEW-1 }
   - press: q
   - expectExit: 3000

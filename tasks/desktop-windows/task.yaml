@@ -55,29 +55,63 @@ prompt: |
 scenario:
   - snapshot: initial
     note: Three windows on a patterned desktop; Files is on top (focused) and overlaps the bottom of Notes; the taskbar lists all three.
+    expect:
+      - { at: { x: 5, y: 3 }, text: "[×]", label: "Notes close button at (5,3)" }
+      - { at: { x: 73, y: 4 }, text: "[×]", label: "Calculator close button at (73,4)" }
+      - { at: { x: 9, y: 14 }, text: "[×]", label: "Files close button at (9,14)" }
+      - { at: { x: 44, y: 3 }, text: "[↑]", label: "Notes maximize button at (44,3)" }
+      - { contains: "10:42", in: { rows: [0, 0] } }
+      - { contains: Notes, in: { rows: [-1, -1] }, label: "taskbar lists Notes" }
+      - { contains: Calculator, in: { rows: [-1, -1] } }
+      - { contains: Files, in: { rows: [-1, -1] } }
   - click: { x: 10, y: 6 }
   - snapshot: raised
     note: Notes is focused and now drawn over Files where they overlap.
+    expect:
+      - { at: { x: 10, y: 14 }, notOneOf: "×", label: "Notes now covers the Files close button" }
+      - { at: { x: 5, y: 3 }, text: "[×]" }
   - drag: { from: { x: 26, y: 3 }, to: { x: 40, y: 7 } }
   - snapshot: moved
     note: Notes moved by the drag offset (+14, +4) and now spans columns 18 to 61 and rows 7 to 22.
+    expect:
+      - { at: { x: 19, y: 7 }, text: "[×]", label: "Notes moved by (+14, +4)" }
+      - { at: { x: 58, y: 7 }, text: "[↑]" }
   - drag: { from: { x: 99, y: 20 }, to: { x: 105, y: 26 } }
   - snapshot: resized-window
     note: Calculator was resized from its corner to 34×23 and is now focused and on top.
+    expect:
+      - { at: { x: 102, y: 4 }, text: "[↑]", label: "Calculator is now 34 wide" }
+      - { at: { x: 73, y: 4 }, text: "[×]" }
   - type: 12*7=
   - snapshot: calculator
     note: The Calculator display shows 84.
+    expect:
+      - { contains: "84", in: { rows: [4, 26], cols: [72, 105] }, label: "display shows 84" }
   - click: { x: 10, y: 14 }
   - snapshot: closed
     note: Files was closed with its [×] button and is gone from the desktop and the taskbar; Calculator keeps the focus.
+    expect:
+      - { notContains: Files, in: { rows: [-1, -1] }, label: "Files gone from the taskbar" }
+      - { at: { x: 10, y: 14 }, notOneOf: "×" }
   - press: f5
   - snapshot: maximized
     note: Calculator fills the whole desktop between the menu bar and the taskbar.
+    expect:
+      - { at: { x: 1, y: 1 }, text: "[×]", label: "Calculator frame starts at the top-left of the desktop" }
+      - { at: { x: 116, y: 1 }, oneOf: "[", label: "maximize button at the right edge" }
   - press: f5 f6
   - snapshot: restored-and-cycled
     note: Calculator is back to its previous size and position; F6 focused and raised Notes.
+    expect:
+      - { at: { x: 73, y: 4 }, text: "[×]", label: "Calculator restored" }
+      - { at: { x: 102, y: 4 }, text: "[↑]" }
+      - { at: { x: 19, y: 7 }, text: "[×]" }
   - resize: { cols: 90, rows: 28 }
   - snapshot: resized-terminal
     note: After shrinking the terminal to 90x28, both windows were moved (or shrunk) to stay fully on screen.
+    expect:
+      - { contains: "10:42", in: { rows: [0, 0] } }
+      - { contains: Notes, in: { rows: [-1, -1] } }
+      - { contains: Calculator, in: { rows: [-1, -1] } }
   - press: ctrl+q
   - expectExit: 3000

@@ -35,6 +35,11 @@ prompt: |
 scenario:
   - snapshot: initial
     note: The empty form with focus on Full name.
+    expect:
+      - { contains: Nimbus }
+      - { inOrder: [Full name, Email, Password], label: "fields in order" }
+      - { contains: Free }
+      - { contains: Team }
   - type: Ada Lovelace
   - press: tab
   - type: ada@example
@@ -42,20 +47,38 @@ scenario:
   - type: short
   - snapshot: typing
     note: Name and email are filled in; the password field shows 5 mask characters and has focus.
+    expect:
+      - { contains: Ada Lovelace }
+      - { contains: ada@example }
+      - { notContains: short, label: "password is masked" }
+      - { matches: "[•*●∙·◦]{5}", label: "5 mask characters" }
   - press: tab tab tab enter
   - snapshot: validation-errors
     note: Errors are shown for Email and Password, and focus moved to Email.
+    expect:
+      - { matches: "8\\s*char", label: "password length error" }
   - type: .com
   - press: tab backspace backspace backspace backspace backspace
   - type: correct-horse
   - press: tab right tab space
   - snapshot: filled
     note: Email is fixed, the password has 13 mask characters, Pro is selected and the newsletter box is checked (focused).
+    expect:
+      - { contains: ada@example.com }
+      - { matches: "[•*●∙·◦]{13}", label: "13 mask characters" }
   - press: tab enter
   - snapshot: confirmation
     note: A confirmation screen welcomes Ada and summarizes email, plan (Pro) and newsletter (yes), without the password.
+    expect:
+      - { contains: Ada }
+      - { contains: ada@example.com }
+      - { contains: Pro }
+      - { notContains: correct-horse, label: "password not shown" }
+      - { notContains: Full name, label: "form replaced by the confirmation" }
   - resize: { cols: 70, rows: 22 }
   - snapshot: resized
     note: The confirmation screen still fits after resizing to 70x22.
+    expect:
+      - { contains: ada@example.com }
   - press: q
   - expectExit: 3000

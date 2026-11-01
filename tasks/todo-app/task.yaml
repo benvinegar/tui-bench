@@ -35,6 +35,8 @@ prompt: |
 scenario:
   - snapshot: initial
     note: First load. All 8 todos, the first one selected, 2 of them already done.
+    expect:
+      - { inOrder: ["Review pull request #482", "Book dentist appointment", "Write unit tests for the parser", "Prepare slides"] }
   - press: j j space
   - snapshot: toggled
     note: The third todo ("Write unit tests for the parser") was toggled to done and is still selected.
@@ -42,29 +44,48 @@ scenario:
   - type: Water the plants
   - snapshot: add-prompt
     note: The add prompt is open with "Water the plants" typed in.
+    expect:
+      - { contains: Water the plants }
   - press: enter
   - snapshot: added
     note: The new todo appears at the end of the list; counts updated.
+    expect:
+      - { inOrder: ["Prepare slides", "Water the plants"], label: "new todo at the end of the list" }
   - press: "2"
   - snapshot: filter-active
     note: Only active todos are shown and the Active tab is indicated.
+    expect:
+      - { notContains: Book dentist }
+      - { notContains: Call grandma }
+      - { contains: Water the plants }
   - press: "3"
   - snapshot: filter-done
     note: Only completed todos are shown.
+    expect:
+      - { contains: Book dentist }
+      - { contains: Write unit tests }
+      - { notContains: Renew passport }
   - press: "1"
   - press: k k
   - press: d
   - snapshot: confirm-delete
     note: A confirmation for deleting the selected todo, showing its title.
+    expect:
+      - { contains: delete }
   - press: "y"
   - snapshot: deleted
     note: The todo is gone and the selection is on a valid row.
   - press: "?"
   - snapshot: help
     note: The help overlay lists every key binding.
+    expect:
+      - { contains: quit }
+      - { contains: toggle }
   - press: "?"
   - resize: { cols: 70, rows: 20 }
   - snapshot: resized
     note: After resizing to 70x20 the layout still fits and is readable.
+    expect:
+      - { contains: Prepare slides }
   - press: q
   - expectExit: 3000

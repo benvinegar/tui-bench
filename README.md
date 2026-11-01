@@ -47,6 +47,7 @@ export ANTHROPIC_API_KEY=...          # and/or OPENAI_API_KEY, OPENROUTER_API_KE
 | `tuibench capture [-t/-s/-m filters]` | Rebuild results and replay the task scenario (e.g. after editing a scenario) |
 | `tuibench import <dir> -t task -s stack -m label` | Add an app built elsewhere: another agent, a human baseline, a past run |
 | `tuibench show <task> <stack> <model>` | Print a result's captured screens as text |
+| `tuibench check [-t/-s/-m filters] [-v]` | Evaluate the tasks' spec checks against captured results; `-v` lists failures |
 | `tuibench preview <dir> -t task -s stack --steps '[{press: "j j"}]'` | Build an app and print text screenshots after scripted input; this is how CLI agents (the `command` provider) self-test |
 | `tuibench serve [--host 0.0.0.0]` | Build and serve the report; votes are saved to `judgments/judgments.jsonl` |
 | `tuibench report [--standalone]` | Build the report; `--standalone` makes one self-contained HTML file to share (votes then live in the browser and can be exported/imported) |
@@ -106,6 +107,29 @@ scenario:
 Mouse input goes through xterm.js's own encoder, so an app receives exactly what a real xterm would send:
 nothing unless it enabled mouse reporting, motion only in the tracking modes that report it, and the protocol
 it asked for. Undelivered input is recorded as a warning in `capture.json`.
+
+### Spec checks
+
+A snapshot step can declare `expect:`, objective assertions about that screen. They cover what the spec makes
+mandatory (data that must appear, state changes, fixed hit targets, ordering), never style:
+
+```yaml
+  - snapshot: moved
+    note: The first box and its label moved down 12 rows together.
+    expect:
+      - { at: { x: 5, y: 16 }, oneOf: "┌╭┏╔", label: box moved down 12 rows }
+      - { at: { x: 8, y: 18 }, text: API server }
+      - { contains: "26×9", in: { rows: [-1, -1] } }      # last row only
+      - { notContains: Files, in: { rows: [-1, -1] } }
+      - { matches: "60\\s*/\\s*60" }                      # regular expression
+      - { inOrder: [rust-analyzer, chrome, containerd] }  # reading order
+```
+
+Coordinates are 0-based cells (wide glyphs take two), negative rows/columns count from the end, and text
+comparisons ignore case unless `caseSensitive: true`. Checks are evaluated from the captured screens when the
+report is built (or with `tuibench check -v`), so editing them never needs a recapture. The report shows a
+`✓ 3/3 checks` chip per checkpoint (expand it to see each check) and a pass rate per model in Results. Checks are
+objective, so they are shown in blind voting too.
 
 Each capture writes `capture/snapshots.json` (styled cell runs), `capture/recording.cast` (asciicast v2 with input,
 resize and checkpoint markers) and `capture/capture.json` (started / crashed / clean exit).

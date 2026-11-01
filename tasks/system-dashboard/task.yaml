@@ -44,15 +44,28 @@ scenario:
   - wait: 7000
   - snapshot: dashboard
     note: Playback has finished (60/60); every panel is filled in and the replay-finished indication is visible.
+    expect:
+      - { matches: "60\\s*/\\s*60", label: "playback at sample 60/60" }
+      - { matches: "finish|complete|done|ended", label: "replay-finished indication" }
+      - { contains: ada-workstation }
+      - { contains: "Linux 6.8.0-45-generic" }
+      - { inOrder: [chrome, rust-analyzer, redis-server], label: "processes sorted by CPU%" }
   - press: s
   - snapshot: sort-mem
     note: The process table is sorted by MEM% descending and the header shows it; chrome (the top CPU process) is still selected, now 2nd.
+    expect:
+      - { inOrder: [rust-analyzer, chrome, containerd, postgres, dockerd], label: "processes sorted by MEM%" }
   - press: j j j enter
   - snapshot: process-detail
     note: A popup shows every field of dockerd (three rows below chrome in MEM% order).
+    expect:
+      - { contains: "/usr/bin/dockerd", label: "popup shows dockerd" }
   - press: esc
   - resize: { cols: 90, rows: 28 }
   - snapshot: resized
     note: After resizing to 90x28 the dashboard reflows and stays readable.
+    expect:
+      - { matches: "60\\s*/\\s*60" }
+      - { contains: rust-analyzer }
   - press: q
   - expectExit: 3000

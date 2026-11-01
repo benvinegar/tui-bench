@@ -49,30 +49,54 @@ prompt: |
 scenario:
   - snapshot: initial
     note: Inbox selected with its unread count; the newest message (Priya, starred, unread) is selected and shown in the reading pane.
+    expect:
+      - { contains: Q2 planning offsite }
+      - { contains: Inbox }
   - press: j j
   - snapshot: reading
     note: 'Lena''s "Re: Dashboard redesign - round 2" is shown with its two attachments (4.6 MB and 178 KB) and the quoted text styled differently.'
+    expect:
+      - { contains: dashboard-v2.fig }
+      - { contains: "4.6 MB" }
+      - { contains: collapsible sidebar }
   - press: r
   - type: Monday at 15:00 works for me. See you then!
   - snapshot: reply
     note: 'A compose window: To Lena, subject "Re: Dashboard redesign - round 2" (no double Re:), the typed reply above the quoted original.'
+    expect:
+      - { contains: "Re: Dashboard redesign" }
+      - { notContains: "Re: Re:", label: "no doubled Re:" }
+      - { contains: "Monday at 15:00 works for me" }
   - press: ctrl+s
   - snapshot: sent-toast
     note: The compose window closed and a "Message sent" toast is visible.
+    expect:
+      - { contains: sent }
   - press: s e
   - snapshot: archived
     note: Lena's message was starred and archived; the invoice email is now selected and a toast offers undo.
+    expect:
+      - { contains: Your invoice for March }
   - press: "3"
   - snapshot: sent-folder
     note: The Sent folder lists the reply at the top, dated 14:30 today.
+    expect:
+      - { contains: "Re: Dashboard redesign" }
+      - { contains: "14:30" }
   - press: ["1", "/"]
   - type: invoice
   - press: enter
   - snapshot: search
     note: The Inbox is filtered to the two invoice emails (Cloudnine Billing and Marco Bellini), with the filter shown.
+    expect:
+      - { contains: Your invoice for March }
+      - { contains: "Invoice #2026-014" }
+      - { notContains: Lunch Thursday, label: "non-matching mail hidden" }
   - press: esc
   - resize: { cols: 90, rows: 28 }
   - snapshot: resized
     note: At 90x28 the layout adapts and stays readable.
+    expect:
+      - { contains: invoice }
   - press: q
   - expectExit: 3000

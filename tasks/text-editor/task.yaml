@@ -44,34 +44,56 @@ prompt: |
 scenario:
   - snapshot: initial
     note: notes.md is open at the top with line numbers, Markdown highlighting, and Ln 1, Col 1.
+    expect:
+      - { at: { x: 5, y: 3 }, text: "Our launch is on Friday.", label: "line 3 starts at screen column 5" }
+      - { inOrder: [File, Edit, View, Help], in: { rows: [0, 0] } }
+      - { at: { x: 1, y: 0 }, text: File }
+      - { contains: "Ln 1, Col 1", in: { rows: [-1, -1] } }
   - click: { x: 9, y: 3 }
   - type: "big "
   - snapshot: click-and-type
     note: Line 3 now reads "Our big launch is on Friday."; the status bar shows modified and Ln 3, Col 9.
+    expect:
+      - { at: { x: 5, y: 3 }, text: "Our big launch is on Friday." }
+      - { contains: "Ln 3, Col 9", in: { rows: [-1, -1] } }
   - press: home shift+down shift+down
   - snapshot: selection
     note: Lines 3 and 4 are highlighted as a selection.
   - press: ctrl+x ctrl+end ctrl+v
   - snapshot: cut-paste
     note: The two lines were cut from the top and pasted at the end of the file; the view shows the end.
+    expect:
+      - { inOrder: ["Keep it under 90 seconds", "Our big launch is on Friday.", "Everything below needs an owner"], label: "the two lines were pasted at the end" }
   - press: ctrl+home ctrl+f
   - type: TODO
   - press: enter enter
   - snapshot: find
     note: The find bar shows "TODO" with "2 of 4", and the second TODO (the onboarding emails line) is selected.
+    expect:
+      - { contains: "2 of 4" }
   - press: esc
   - scroll: { x: 40, y: 15, direction: down, amount: 5 }
   - snapshot: wheel-scroll
     note: The view scrolled down 15 lines (the first visible line number is 16) while the cursor stayed put.
+    expect:
+      - { at: { x: 2, y: 1 }, text: "16", label: "first visible line is 16" }
   - click: { x: 2, y: 0 }
   - snapshot: file-menu
     note: The File menu is open below its title, listing New, Save, Quit with shortcuts.
+    expect:
+      - { inOrder: [New, Save, Quit], label: "File menu items" }
   - press: esc
   - resize: { cols: 80, rows: 24 }
   - snapshot: resized
     note: At 80x24 the menu bar, gutter and status bar still fit.
+    expect:
+      - { contains: "Ln ", in: { rows: [-1, -1] } }
   - press: ctrl+q
   - snapshot: unsaved-dialog
     note: A modal asks whether to save changes to notes.md, with Save / Don't Save / Cancel buttons.
+    expect:
+      - { contains: notes.md }
+      - { matches: "Don.t Save" }
+      - { contains: Cancel }
   - press: n
   - expectExit: 3000

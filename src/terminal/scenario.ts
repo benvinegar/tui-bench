@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Expectation } from "../expect.ts";
 import { TerminalSession, type SessionOptions } from "./session.ts";
 import { splitKeys } from "./keys.ts";
 import type { Snapshot } from "./snapshot.ts";
@@ -27,6 +28,8 @@ export const Step = z.union([
       quiet: z.number().int().optional(),
       /** Give up waiting for the screen to settle after this many ms (default 1500; animations never settle). */
       maxWait: z.number().int().optional(),
+      /** Objective assertions about this screen (see src/expect.ts). */
+      expect: z.array(Expectation).optional(),
     })
     .strict(),
   z.object({ expectExit: z.number().int().positive() }).strict(),

@@ -16,6 +16,7 @@ import { STACKS, getStack } from "./stacks.ts";
 import { listTasks, loadTask } from "./tasks.ts";
 import { runScenario, Step } from "./terminal/scenario.ts";
 import { previewApp } from "./preview.ts";
+import { evaluate } from "./expect.ts";
 import { snapshotToText, type Snapshot } from "./terminal/snapshot.ts";
 import { pool, readJson } from "./util.ts";
 
@@ -127,6 +128,34 @@ program
     }
     if (b.typecheckOk === false) log(`TYPECHECK FAILED (the app still runs)\n\n${b.output}\n`);
     log(await previewApp(stack, task, ws, parsed.data, { cols: o.cols && +o.cols, rows: o.rows && +o.rows }));
+  });
+
+program
+  .command("check")
+  .description("Evaluate each task's expected-screen checks against the captured results")
+  .option("-t, --task <ids>", "filter tasks", list)
+  .option("-s, --stack <ids>", "filter stacks", list)
+  .option("-m, --model <ids>", "filter models", list)
+  .option("-v, --verbose", "list every failed check")
+  .action((o) => {
+    const entries = findEntries(resultsDir(), { tasks: o.task, stacks: o.stack, models: o.model });
+    const byTask = new Map<string, Entry[]>();
+    for (const e of entries) byTask.set(e.task, [...(byTask.get(e.task) ?? []), e]);
+    for (const [taskId, es] of byTask) {
+      const task = loadTask(taskId);
+      const results = es.map((e) => ({ e, checks: evaluate(task.scenario, readJson<Snapshot[]>(path.join(e.captureDir, "snapshots.json")) ?? []) }));
+      const total = results[0]?.checks.length ?? 0;
+      if (!total) {
+        log(`${taskId}: no checks declared`);
+        continue;
+      }
+      log(`\n${taskId} (${total} checks)`);
+      for (const { e, checks } of results) {
+        const passed = checks.filter((c) => c.pass).length;
+        log(`  ${`${e.model} · ${e.stack}`.padEnd(32)} ${String(passed).padStart(3)}/${total}${passed === total ? "  ✓" : ""}`);
+        if (o.verbose) for (const c of checks.filter((c) => !c.pass)) log(`      ✗ [${c.checkpoint}] ${c.label}${c.detail ? ` (${c.detail})` : ""}`);
+      }
+    }
   });
 
 program
