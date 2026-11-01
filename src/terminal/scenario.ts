@@ -75,7 +75,11 @@ export async function runScenario(
       else if ("drag" in step) await s.drag(step.drag.from, step.drag.to, step.drag);
       else if ("scroll" in step) await s.scroll(step.scroll.x, step.scroll.y, step.scroll.direction, step.scroll.amount);
       else if ("hover" in step) await s.hover(step.hover.x, step.hover.y);
-      else if ("resize" in step) s.resize(step.resize.cols, step.resize.rows);
+      else if ("resize" in step) {
+        s.resize(step.resize.cols, step.resize.rows);
+        // Like a person, let the app finish reacting to the resize before sending more input.
+        await s.waitIdle(150, 1000);
+      }
       else if ("snapshot" in step) {
         await s.waitIdle(step.quiet ?? 250, step.maxWait ?? 1500);
         const snap = s.snapshot(step.snapshot);
