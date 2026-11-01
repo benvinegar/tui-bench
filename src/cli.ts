@@ -13,7 +13,8 @@ import { ROOT, resultsDir } from "./paths.ts";
 import { buildReport } from "./report/build.ts";
 import { serve } from "./report/server.ts";
 import { STACKS, getStack } from "./stacks.ts";
-import { listTasks, loadTask } from "./tasks.ts";
+import { installFixtures, listTasks, loadTask } from "./tasks.ts";
+import { systemPrompt, taskPrompt } from "./agent/prompt.ts";
 import { runScenario, Step } from "./terminal/scenario.ts";
 import { previewApp } from "./preview.ts";
 import { evaluate } from "./expect.ts";
@@ -89,10 +90,53 @@ program
   .requiredOption("-s, --stack <id>", "stack id")
   .requiredOption("-m, --model <label>", "label for the entry, e.g. claude-code or human")
   .option("--name <name>", "display name")
+  .option("--harness <text>", "what produced it, e.g. \"Claude Code subagent\"")
+  .option("--tokens <n>", "total tokens the agent used, if known")
+  .option("--tool-calls <n>", "tool calls the agent made, if known")
+  .option("--duration-ms <n>", "how long the agent took, if known")
+  .option("--no-capture", "skip capturing (e.g. to capture everything later with -j 1)")
   .action(async (dir, o) => {
     const meta = await importEntry(loadTask(o.task), getStack(o.stack), o.model, path.resolve(dir), o.name);
+    if (o.harness || o.tokens || o.toolCalls || o.durationMs) {
+      const entry = new Entry(o.task, o.stack, o.model);
+      if (o.harness || o.tokens || o.toolCalls) {
+        meta.external = {
+          harness: o.harness ?? "external agent",
+          ...(o.tokens ? { totalTokens: +o.tokens } : {}),
+          ...(o.toolCalls ? { toolCalls: +o.toolCalls } : {}),
+        };
+      }
+      if (o.durationMs) meta.durationMs = +o.durationMs;
+      entry.writeMeta(meta);
+    }
     log(`Imported ${o.task}/${o.stack}/${o.model} (build ${meta.build?.ok ? "ok" : "FAILED"})`);
-    await capture(new Entry(o.task, o.stack, o.model), log);
+    if (o.capture) await capture(new Entry(o.task, o.stack, o.model), log);
+  });
+
+program
+  .command("prepare <dir>")
+  .description("Create a fresh workspace for an external agent: stack template, task data and PROMPT.md (the exact benchmark prompt)")
+  .requiredOption("-t, --task <id>", "task id")
+  .requiredOption("-s, --stack <id>", "stack id")
+  .option("-f, --force", "replace the directory if it exists")
+  .action((dir, o) => {
+    const task = loadTask(o.task);
+    const stack = getStack(o.stack);
+    const ws = path.resolve(dir);
+    if (fs.existsSync(ws) && !o.force) throw new Error(`${ws} exists (use --force to replace it)`);
+    fs.rmSync(ws, { recursive: true, force: true });
+    fs.cpSync(stack.templateDir, ws, {
+      recursive: true,
+      filter: (src) => !/(^|\/)(node_modules|target)(\/|$)/.test(path.relative(stack.templateDir, src)),
+    });
+    installFixtures(task, ws);
+    // The prompt names the preview command by absolute path so agents can run it from their workspace.
+    const prompt = `${systemPrompt(stack, task, false)}\n\n${taskPrompt(task)}`.replaceAll(
+      "tuibench preview",
+      `${path.join(ROOT, "bin", "tuibench")} preview`,
+    );
+    fs.writeFileSync(path.join(ws, "PROMPT.md"), prompt);
+    log(ws);
   });
 
 program

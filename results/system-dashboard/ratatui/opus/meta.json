@@ -1,0 +1,23 @@
+{
+  "task": "system-dashboard",
+  "stack": "ratatui",
+  "model": "opus",
+  "modelName": "Claude Opus (Claude Code subagent)",
+  "provider": "claude-code-subagent",
+  "source": "imported",
+  "startedAt": "2026-10-27T12:34:35.903Z",
+  "build": {
+    "ok": true,
+    "durationMs": 16831
+  },
+  "source_stats": {
+    "files": 3,
+    "lines": 1376
+  },
+  "durationMs": 854125,
+  "external": {
+    "harness": "Claude Code subagent (Bash + file tools, tuibench preview)",
+    "totalTokens": 170017,
+    "toolCalls": 32
+  }
+}

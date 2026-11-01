@@ -1,0 +1,10 @@
+[
+  { "id": 1, "title": "Review pull request #482", "done": false, "priority": "high", "tags": ["work"] },
+  { "id": 2, "title": "Book dentist appointment", "done": true, "priority": "medium", "tags": ["health"] },
+  { "id": 3, "title": "Write unit tests for the parser", "done": false, "priority": "high", "tags": ["work", "code"] },
+  { "id": 4, "title": "Buy oat milk and coffee beans", "done": false, "priority": "low", "tags": ["errands"] },
+  { "id": 5, "title": "Renew passport", "done": false, "priority": "medium", "tags": ["admin"] },
+  { "id": 6, "title": "Call grandma", "done": true, "priority": "high", "tags": ["family"] },
+  { "id": 7, "title": "Clean up the garage", "done": false, "priority": "low", "tags": ["home"] },
+  { "id": 8, "title": "Prepare slides for Friday's demo", "done": false, "priority": "medium", "tags": ["work"] }
+]

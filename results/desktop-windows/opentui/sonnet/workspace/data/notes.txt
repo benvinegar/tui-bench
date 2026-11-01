@@ -1,0 +1,8 @@
+Shopping
+- oat milk
+- coffee beans
+- batteries (AA)
+
+Ideas
+- a TUI for the office coffee machine
+- learn the kitty keyboard protocol

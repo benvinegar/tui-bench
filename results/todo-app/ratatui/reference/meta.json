@@ -1,0 +1,17 @@
+{
+  "task": "todo-app",
+  "stack": "ratatui",
+  "model": "reference",
+  "modelName": "Reference (hand-written)",
+  "provider": "imported",
+  "source": "imported",
+  "startedAt": "2026-10-27T04:09:45.683Z",
+  "build": {
+    "ok": true,
+    "durationMs": 1128
+  },
+  "source_stats": {
+    "files": 2,
+    "lines": 306
+  }
+}

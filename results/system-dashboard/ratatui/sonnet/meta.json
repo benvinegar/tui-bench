@@ -1,0 +1,23 @@
+{
+  "task": "system-dashboard",
+  "stack": "ratatui",
+  "model": "sonnet",
+  "modelName": "Claude Sonnet (Claude Code subagent)",
+  "provider": "claude-code-subagent",
+  "source": "imported",
+  "startedAt": "2026-10-27T12:28:20.028Z",
+  "build": {
+    "ok": true,
+    "durationMs": 2014
+  },
+  "source_stats": {
+    "files": 3,
+    "lines": 1248
+  },
+  "durationMs": 470138,
+  "external": {
+    "harness": "Claude Code subagent (Bash + file tools, tuibench preview)",
+    "totalTokens": 122146,
+    "toolCalls": 17
+  }
+}

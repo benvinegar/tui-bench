@@ -1,0 +1,31 @@
+{
+  "capturedAt": "2026-11-01T14:40:28.005Z",
+  "size": {
+    "cols": 110,
+    "rows": 34
+  },
+  "started": true,
+  "notes": {
+    "initial": "An empty canvas with the toolbar (Select active) and the status bar.",
+    "two-boxes": "Two boxes whose corners sit exactly on the marked drag start and end cells; Box is the active tool.",
+    "arrow": "A horizontal arrow from the first box to the second, with ▶ on cell (44,9).",
+    "labels": "\"API server\" inside the first box and \"Database\" inside the second, each starting at the clicked cell.",
+    "pen-stroke": "A green freehand stroke along the marked drag path.",
+    "selected-recolored": "The first box is selected (clearly indicated, bounds in the status bar) and now red.",
+    "moved": "The first box and its \"API server\" label moved down 12 rows together; the arrow stayed where it was.",
+    "undone": "Undo put the box and its label back at their original position (still red).",
+    "deleted": "The arrow was selected and deleted; both boxes and labels remain.",
+    "help": "The help overlay lists all tools and keys.",
+    "resized": "After shrinking to 90x28, the toolbar and status bar still fit and the drawing is intact where it fits."
+  },
+  "crashed": false,
+  "exit": {
+    "code": 0,
+    "signal": 0,
+    "at": 5591
+  },
+  "cleanExit": true,
+  "warnings": [],
+  "durationMs": 5651,
+  "snapshotCount": 11
+}

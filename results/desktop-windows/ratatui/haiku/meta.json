@@ -1,0 +1,23 @@
+{
+  "task": "desktop-windows",
+  "stack": "ratatui",
+  "model": "haiku",
+  "modelName": "Claude Haiku (Claude Code subagent)",
+  "provider": "claude-code-subagent",
+  "source": "imported",
+  "startedAt": "2026-11-01T14:38:13.389Z",
+  "build": {
+    "ok": true,
+    "durationMs": 16971
+  },
+  "source_stats": {
+    "files": 8,
+    "lines": 1634
+  },
+  "durationMs": 735973,
+  "external": {
+    "harness": "Claude Code subagent (Bash + file tools, tuibench preview)",
+    "totalTokens": 237989,
+    "toolCalls": 35
+  }
+}

@@ -45,7 +45,8 @@ export ANTHROPIC_API_KEY=...          # and/or OPENAI_API_KEY, OPENROUTER_API_KE
 | `tuibench list` | Tasks, stacks, configured models |
 | `tuibench generate [-t task] [-s stack] [-m model] [-j N] [--force]` | Run the agent for each combination, then capture. Existing results are skipped unless `--force`. |
 | `tuibench capture [-t/-s/-m filters]` | Rebuild results and replay the task scenario (e.g. after editing a scenario) |
-| `tuibench import <dir> -t task -s stack -m label` | Add an app built elsewhere: another agent, a human baseline, a past run |
+| `tuibench prepare <dir> -t task -s stack` | Create a workspace for an external agent: template, task data and `PROMPT.md` with the exact benchmark prompt |
+| `tuibench import <dir> -t task -s stack -m label` | Add an app built elsewhere: another agent, a human baseline, a past run. `--harness`, `--tokens`, `--tool-calls` and `--duration-ms` record the agent's stats. |
 | `tuibench show <task> <stack> <model>` | Print a result's captured screens as text |
 | `tuibench check [-t/-s/-m filters] [-v]` | Evaluate the tasks' spec checks against captured results; `-v` lists failures |
 | `tuibench preview <dir> -t task -s stack --steps '[{press: "j j"}]'` | Build an app and print text screenshots after scripted input; this is how CLI agents (the `command` provider) self-test |

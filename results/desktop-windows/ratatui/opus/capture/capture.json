@@ -1,0 +1,29 @@
+{
+  "capturedAt": "2026-11-01T14:39:57.928Z",
+  "size": {
+    "cols": 120,
+    "rows": 36
+  },
+  "started": true,
+  "notes": {
+    "initial": "Three windows on a patterned desktop; Files is on top (focused) and overlaps the bottom of Notes; the taskbar lists all three.",
+    "raised": "Notes is focused and now drawn over Files where they overlap.",
+    "moved": "Notes moved by the drag offset (+14, +4) and now spans columns 18 to 61 and rows 7 to 22.",
+    "resized-window": "Calculator was resized from its corner to 34×23 and is now focused and on top.",
+    "calculator": "The Calculator display shows 84.",
+    "closed": "Files was closed with its [×] button and is gone from the desktop and the taskbar; Calculator keeps the focus.",
+    "maximized": "Calculator fills the whole desktop between the menu bar and the taskbar.",
+    "restored-and-cycled": "Calculator is back to its previous size and position; F6 focused and raised Notes.",
+    "resized-terminal": "After shrinking the terminal to 90x28, both windows were moved (or shrunk) to stay fully on screen."
+  },
+  "crashed": false,
+  "exit": {
+    "code": 0,
+    "signal": 0,
+    "at": 2885
+  },
+  "cleanExit": true,
+  "warnings": [],
+  "durationMs": 2945,
+  "snapshotCount": 9
+}

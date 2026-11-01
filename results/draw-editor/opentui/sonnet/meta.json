@@ -1,0 +1,24 @@
+{
+  "task": "draw-editor",
+  "stack": "opentui",
+  "model": "sonnet",
+  "modelName": "Claude Sonnet (Claude Code subagent)",
+  "provider": "claude-code-subagent",
+  "source": "imported",
+  "startedAt": "2026-11-01T14:29:37.530Z",
+  "build": {
+    "ok": true,
+    "typecheckOk": true,
+    "durationMs": 1838
+  },
+  "source_stats": {
+    "files": 4,
+    "lines": 855
+  },
+  "durationMs": 224202,
+  "external": {
+    "harness": "Claude Code subagent (Bash + file tools, tuibench preview)",
+    "totalTokens": 105672,
+    "toolCalls": 15
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "capturedAt": "2026-10-27T12:35:27.179Z",
+  "size": {
+    "cols": 120,
+    "rows": 36
+  },
+  "started": true,
+  "notes": {
+    "dashboard": "Playback has finished (60/60); every panel is filled in and the replay-finished indication is visible.",
+    "sort-mem": "The process table is sorted by MEM% descending and the header shows it.",
+    "process-detail": "A popup shows every field of the 4th process in MEM% order.",
+    "resized": "After resizing to 90x28 the dashboard reflows and stays readable."
+  },
+  "crashed": false,
+  "exit": {
+    "code": 0,
+    "signal": 0,
+    "at": 9382
+  },
+  "cleanExit": true,
+  "durationMs": 9410,
+  "snapshotCount": 4
+}

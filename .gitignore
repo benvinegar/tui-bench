@@ -1,9 +1,14 @@
+# Dependencies and build output, wherever they are
 node_modules/
-.cache/
 target/
-results/
-report/
-models.yaml
-scratch/
+.tuibench/
+
+# Generated report output and local scratch (anchored: src/report/ is source code)
+/report/
+/scratch/
+/.cache/
 /bun.lock
 *.bundle
+
+# Your model list and API settings
+/models.yaml

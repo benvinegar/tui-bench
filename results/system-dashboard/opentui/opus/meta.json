@@ -1,0 +1,24 @@
+{
+  "task": "system-dashboard",
+  "stack": "opentui",
+  "model": "opus",
+  "modelName": "Claude Opus (Claude Code subagent)",
+  "provider": "claude-code-subagent",
+  "source": "imported",
+  "startedAt": "2026-10-27T12:32:59.302Z",
+  "build": {
+    "ok": true,
+    "typecheckOk": true,
+    "durationMs": 1456
+  },
+  "source_stats": {
+    "files": 8,
+    "lines": 1367
+  },
+  "durationMs": 703911,
+  "external": {
+    "harness": "Claude Code subagent (Bash + file tools, tuibench preview)",
+    "totalTokens": 156278,
+    "toolCalls": 25
+  }
+}

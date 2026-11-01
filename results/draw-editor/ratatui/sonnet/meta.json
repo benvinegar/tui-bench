@@ -1,0 +1,23 @@
+{
+  "task": "draw-editor",
+  "stack": "ratatui",
+  "model": "sonnet",
+  "modelName": "Claude Sonnet (Claude Code subagent)",
+  "provider": "claude-code-subagent",
+  "source": "imported",
+  "startedAt": "2026-11-01T14:29:19.968Z",
+  "build": {
+    "ok": true,
+    "durationMs": 15914
+  },
+  "source_stats": {
+    "files": 3,
+    "lines": 1035
+  },
+  "durationMs": 204604,
+  "external": {
+    "harness": "Claude Code subagent (Bash + file tools, tuibench preview)",
+    "totalTokens": 91780,
+    "toolCalls": 8
+  }
+}

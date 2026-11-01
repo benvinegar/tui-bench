@@ -1,0 +1,24 @@
+{
+  "task": "desktop-windows",
+  "stack": "opentui",
+  "model": "haiku",
+  "modelName": "Claude Haiku (Claude Code subagent)",
+  "provider": "claude-code-subagent",
+  "source": "imported",
+  "startedAt": "2026-11-01T14:39:15.526Z",
+  "build": {
+    "ok": true,
+    "typecheckOk": true,
+    "durationMs": 1312
+  },
+  "source_stats": {
+    "files": 7,
+    "lines": 1510
+  },
+  "durationMs": 815494,
+  "external": {
+    "harness": "Claude Code subagent (Bash + file tools, tuibench preview)",
+    "totalTokens": 278663,
+    "toolCalls": 51
+  }
+}

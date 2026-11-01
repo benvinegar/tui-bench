@@ -1,0 +1,11 @@
+[
+  { "name": "..", "type": "dir", "size": 0, "modified": "2026-03-12 09:14" },
+  { "name": "drafts", "type": "dir", "size": 0, "modified": "2026-03-10 17:02" },
+  { "name": "screenshots", "type": "dir", "size": 0, "modified": "2026-03-11 12:40" },
+  { "name": "budget-2026.xlsx", "type": "file", "size": 48211, "modified": "2026-03-11 16:02" },
+  { "name": "launch-plan.md", "type": "file", "size": 2304, "modified": "2026-03-12 08:55" },
+  { "name": "logo.svg", "type": "file", "size": 9182, "modified": "2026-02-27 10:31" },
+  { "name": "offsite-agenda.pdf", "type": "file", "size": 182044, "modified": "2026-03-12 13:58" },
+  { "name": "release-notes-2.0.txt", "type": "file", "size": 5120, "modified": "2026-03-12 11:20" },
+  { "name": "team-photo.jpg", "type": "file", "size": 3201114, "modified": "2026-03-08 11:20" }
+]

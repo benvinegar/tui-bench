@@ -1,0 +1,30 @@
+{
+  "capturedAt": "2026-10-27T13:26:12.213Z",
+  "size": {
+    "cols": 100,
+    "rows": 30
+  },
+  "started": true,
+  "notes": {
+    "initial": "First load. All 8 todos, the first one selected, 2 of them already done.",
+    "toggled": "The third todo (\"Write unit tests for the parser\") was toggled to done and is still selected.",
+    "add-prompt": "The add prompt is open with \"Water the plants\" typed in.",
+    "added": "The new todo appears at the end of the list; counts updated.",
+    "filter-active": "Only active todos are shown and the Active tab is indicated.",
+    "filter-done": "Only completed todos are shown.",
+    "confirm-delete": "A confirmation for deleting the selected todo, showing its title.",
+    "deleted": "The todo is gone and the selection is on a valid row.",
+    "help": "The help overlay lists every key binding.",
+    "resized": "After resizing to 70x20 the layout still fits and is readable."
+  },
+  "crashed": false,
+  "exit": {
+    "code": 0,
+    "signal": 0,
+    "at": 3428
+  },
+  "cleanExit": true,
+  "warnings": [],
+  "durationMs": 3488,
+  "snapshotCount": 10
+}

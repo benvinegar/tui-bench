@@ -1,0 +1,18 @@
+{
+  "task": "todo-app",
+  "stack": "opentui",
+  "model": "reference",
+  "modelName": "Reference (hand-written)",
+  "provider": "imported",
+  "source": "imported",
+  "startedAt": "2026-10-27T04:10:57.481Z",
+  "build": {
+    "ok": true,
+    "typecheckOk": true,
+    "durationMs": 1097
+  },
+  "source_stats": {
+    "files": 3,
+    "lines": 213
+  }
+}

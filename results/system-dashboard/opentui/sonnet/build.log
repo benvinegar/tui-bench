@@ -1,0 +1,11 @@
+$ bun install
+bun install v1.4.4 (38afee6c8)
+
++ @types/bun@1.3.1
++ typescript@5.9.3
++ @opentui/core@0.7.0
+
+18 packages installed [11.00ms]
+
+$ tsc --noEmit
+(no type errors)

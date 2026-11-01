@@ -1,0 +1,65 @@
+export const T = {
+  // desktop
+  deskBg: 0x15233c,
+  deskFg: 0x22385c,
+  deskChar: "░",
+
+  // menu bar / taskbar
+  barBg: 0xc8ced8,
+  barFg: 0x1b2130,
+  barHot: 0xb4281f,
+  barDim: 0x5d6678,
+  accent: 0x2f6fb8,
+  accentFg: 0xffffff,
+
+  // windows
+  winBg: 0x1d2c4d,
+  winFg: 0xdfe6f2,
+  winDimFg: 0x9aa8c2,
+  frameActive: 0xeef2f8,
+  frameInactive: 0x55688e,
+  titleActiveFg: 0xffffff,
+  titleActiveBg: 0x2f6fb8,
+  titleInactive: 0x8a98b5,
+  btnActive: 0x6ee7a8,
+  btnInactive: 0x55688e,
+  grip: 0x6ee7a8,
+  cursorBg: 0xffd866,
+  cursorFg: 0x1b2130,
+  selBg: 0x2f6fb8,
+  selBgInactive: 0x33476f,
+  headerFg: 0x8fb4ff,
+  sepFg: 0x3a4f78,
+  dirFg: 0xffffff,
+  dirMark: 0xf2c94c,
+  sizeFg: 0xa9bbd8,
+  dateFg: 0x8597b8,
+  scrollTrack: 0x3a4f78,
+  scrollThumb: 0xc6d2e6,
+
+  // calculator
+  lcdBg: 0x0e1729,
+  lcdFg: 0x9ef0c0,
+  lcdDim: 0x5f7899,
+  keyDigitBg: 0x3a4d75,
+  keyDigitFg: 0xffffff,
+  keyOpBg: 0xd98b35,
+  keyOpFg: 0x1b2130,
+  keyEqBg: 0x3fa66b,
+  keyEqFg: 0xffffff,
+  keyClrBg: 0xc2453d,
+  keyClrFg: 0xffffff,
+  keyBsBg: 0x66789c,
+  keyBsFg: 0xffffff,
+  keyShadow: 0x0a1120,
+
+  // dialog
+  dlgBg: 0xc8ced8,
+  dlgFg: 0x1b2130,
+  dlgFrame: 0xffffff,
+  dlgTitle: 0x1b2130,
+  okBg: 0x3fa66b,
+  okFg: 0xffffff,
+
+  shadow: 0.42,
+}
