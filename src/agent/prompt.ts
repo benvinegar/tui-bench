@@ -24,7 +24,8 @@ input and get plain-text screenshots back (colors and styles are not shown):
 
 Steps: {press: "<keys>"}, {type: "<text>"}, {wait: <ms>}, {resize: {cols, rows}}, {snapshot: <name>}, and mouse input
 with 0-based cells: {click: {x, y, button?, count?}}, {drag: {from: {x, y}, to: {x, y}}}, {scroll: {x, y, direction}},
-{hover: {x, y}}. Mouse input only reaches the app if it enabled mouse reporting. A screenshot is always taken at the end. Key names: ${KEY_NAMES_HELP}`;
+{hover: {x, y}}, and {expectExit: <ms>} after a quit key to check that the app exits cleanly. Mouse input only reaches
+the app if it enabled mouse reporting. A screenshot is always taken at the end. Key names: ${KEY_NAMES_HELP}`;
 
   return `You are building a terminal user interface (TUI) application. Your work is part of a benchmark: after you finish,
 the app is built from the workspace, launched in a ${task.size.cols}x${task.size.rows} terminal (xterm-256color, truecolor), driven

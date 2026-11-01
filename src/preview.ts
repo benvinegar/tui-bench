@@ -18,7 +18,8 @@ export async function previewApp(
 ): Promise<string> {
   installFixtures(task, workspace);
   const all: Step[] = [...steps];
-  if (!all.length || !("snapshot" in all[all.length - 1]!)) all.push({ snapshot: "end" });
+  const last = all[all.length - 1];
+  if (!last || !("snapshot" in last || "expectExit" in last)) all.push({ snapshot: "end" });
   const r = await runScenario(
     { ...stack.runCommand(workspace), cwd: workspace, cols: size?.cols ?? task.size.cols, rows: size?.rows ?? task.size.rows },
     all,
@@ -27,6 +28,7 @@ export async function previewApp(
   const parts = r.snapshots.map((s) => `[${s.name}] ${s.cols}x${s.rows}\n${snapshotToText(s)}`);
   if (r.warnings.length) parts.push(`Warnings:\n${r.warnings.map((w) => `- ${w}`).join("\n")}`);
   if (r.crashed || r.error) parts.push(`App problem: ${r.error ?? "crashed"}`);
+  if (r.cleanExit !== null) parts.push(r.cleanExit ? "App exited cleanly (status 0, terminal restored)." : `App did not exit cleanly${r.exit ? ` (status ${r.exit.code})` : " in time"}.`);
   if (r.crashed && r.exit) {
     parts.push(`App exited on its own with code ${r.exit.code} after ${r.exit.at}ms.`);
     parts.push(appOutputTail(r.cast));
