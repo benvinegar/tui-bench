@@ -6,3 +6,4 @@ report/
 models.yaml
 scratch/
 /bun.lock
+*.bundle
